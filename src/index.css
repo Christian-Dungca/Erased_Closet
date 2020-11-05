@@ -1,0 +1,16 @@
+/* Fonts: Karla, Monteserrat, Heebo, Merriweather
+
+    font-family: 'Heebo', sans-serif;
+    font-family: 'Karla', sans-serif;
+    font-family: 'Merriweather', serif;
+    font-family: 'Montserrat', sans-serif;
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&family=Karla:ital,wght@0,400;0,700;1,400;1,700&family=Merriweather:ital,wght@0,400;0,700;0,900;1,700&family=Montserrat:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,900&display=swap");
+
+:root {
+    --font-heebo: 'Heebo', sans-serif;
+    --font-karla: 'Karla', sans-serif;
+    --font-merriweather: 'Merriweather', serif;
+    --font-montserrat: 'Montserrat', sans-serif;
+}
