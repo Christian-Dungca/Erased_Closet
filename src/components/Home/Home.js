@@ -18,7 +18,7 @@ import SearchBar from "../SearchBar/SearchBar";
 const Home = () => {
   // Word keeps track of the input field
   const [word, setWord] = useState("");
-  // The orignal array of Products 
+  // The orignal array of Products
   const [Product_List] = useState(listOfProducts);
   // The filtered list of products based on SearchBar component's value
   const [filterDisplay, setFilterDisplay] = useState([]);
