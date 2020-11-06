@@ -4,7 +4,7 @@ import styles from "./Navigation.module.scss";
 const Navigation = () => {
   return (
     <div className={styles.Navigation}>
-      <p>Shop Now</p>
+      <p>Enter Now</p>
       <p>The Erased Closet</p>
       <p>Cart</p>
     </div>
