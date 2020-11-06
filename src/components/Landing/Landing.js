@@ -4,10 +4,10 @@ import styles from "./Landing.module.scss";
 const Landing = () => {
   return (
     <div className={styles.Landing}> 
-        <div className={styles.textSection}></div>
-        <div className={styles.bigImgSection}></div>
+        <div className={styles.textSection}> Landing text section</div>
+        <div className={styles.bigImgSection}> Title section</div>
         <div className={styles.smallImgSection}>
-            <div className={styles.smallImg}></div>
+            <div className={styles.smallImg}>Small Image Section</div>
         </div>
     </div>
   );
