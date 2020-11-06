@@ -5,7 +5,7 @@ const Navigation = () => {
   return (
     <div className={styles.Navigation}>
       <p>Enter Now</p>
-      <p>The Erased Closet</p>
+      <p className={styles.name}>The Erased Closet</p>
       <p>Cart</p>
     </div>
   );

@@ -1,6 +1,6 @@
 // Top Level Container
 .Landing {
-    background-color: lightgreen;
+    background-color: white;
     width: 100%;
     height: 95vh;
     display: flex;
@@ -8,36 +8,55 @@
 
 // Left Section Container
 .bigImgSection {
-    background-color: lightyellow;
+    // background-color: lightyellow;
     width: 50%;
     height: 100%;
+    background: url(../../assets/images/med-shadow-yellow-bg.jpg);
+    background-size: cover;
 }
 
 // Right Section Container
 .smallImgSection {
-    background-color: lightblue;
+    // background-color: lightblue;
+    background-size: cover;
     width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
-
+    
     .smallImg {
         width: 80%;
         height: 90%;
-        background-color: lightslategray;
+        // background-color: lightslategray;
+        background: url(../../assets/images/sm-yellow-sunflower.jpg);
         margin-left: -3rem;
     }
 }
 
 // Text Section Overlay
 .textSection {
-    background-color: lightpink;
+    // background-color: lightpink;
+    color: rgb(70, 119, 255);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    // Opacity < 1 for now only when testing
-    opacity: .5;
-    width: 50%;
+    // // Opacity < 1 for now only when testing
+    // opacity: .5;
+    width: 70%;
     height: 50%;
+
+    .name {
+        font-family: var(--font-merriweather);
+        font-size: 14rem;
+        font-weight: 700;
+        line-height: 140%;
+    } 
+    
+    .slogan {
+        font-family: var(--font-heebo);
+        color: white;
+        text-transform: uppercase;
+    }
+
 }

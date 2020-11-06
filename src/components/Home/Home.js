@@ -5,6 +5,16 @@ import Products from "../Products/Products";
 import listOfProducts from "../Products/products-data";
 import SearchBar from "../SearchBar/SearchBar";
 
+/* 
+    complex searching based on every word
+    
+    [] have to check if the words contain spaces / white space
+    [] created a new array of words, from the original string which is broken up by whitespace
+    [] use that array of words to check against each product
+        --> for each word in the array words, does the color contain that value, does the name contain that value
+        --> has to contain all of the words
+*/
+
 const Home = () => {
   // Word keeps track of the input field
   const [word, setWord] = useState("");
