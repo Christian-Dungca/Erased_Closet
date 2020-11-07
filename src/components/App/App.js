@@ -14,6 +14,7 @@ function App() {
   return (
     <div className={styles.App}>
       {bag && <BagModal toggleBag={handleBag}/>}
+      
       <Navigation toggleBag={handleBag}/>
       <Home />
     </div>
