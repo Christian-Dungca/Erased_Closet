@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Products.module.scss";
 import Product from "../Product/Product";
-import PRODUCT_LIST from './products-data';
+import {ProductContext} from "../App/App";
+// import PRODUCT_LIST from './products-data';
 
-const Products = ({PRODUCT_LIST}) => {
+const Products = () => {
+
+  const PRODUCT_LIST = useContext(ProductContext)
   return (
     <div className={styles.Products}>
       <div className={styles.productGallery}>

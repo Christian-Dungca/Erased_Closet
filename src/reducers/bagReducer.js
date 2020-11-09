@@ -19,7 +19,7 @@ const bagReducer = (state, action) => {
                     console.log('Removed from bag')
                     return {...product, inBag: false}
                 } else {
-                    console('Not Removed from bag')
+                    console.log('Not Removed from bag')
                     return product;
                 }
             })

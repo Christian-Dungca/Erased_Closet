@@ -7,6 +7,7 @@ import bagReducer from "../../reducers/bagReducer";
 import PRODUCT_LIST from "../Products/products-data";
 
 const BagContext = createContext(null);
+const ProductContext = createContext(null);
 
 function App() {
   // I need to pass state into Home via props, and the search bar thingy will use the state given via props
@@ -20,7 +21,7 @@ function App() {
   //   productsInBag.filter((product) => product.inBag === true)
   // );
 
-  const itemsInBag = productsInBag.filter((product) => product.inBag === true)
+  const itemsInBag = productsInBag.filter((product) => product.inBag === true);
 
   // useEffect()
 
@@ -32,19 +33,20 @@ function App() {
     toggleBag(!bagModal);
   };
 
-
   return (
     <div className={styles.App}>
-      <BagContext.Provider value={dispatchProduct}>
-        {bagModal && (
-          <BagModal toggleBag={toggleBagModal} itemsInBag={itemsInBag} />
-        )}
-        <Navigation toggleBag={toggleBagModal} />
-        <Home />
-      </BagContext.Provider>
+      <ProductContext.Provider value={productsInBag}>
+        <BagContext.Provider value={dispatchProduct}>
+          {bagModal && (
+            <BagModal toggleBag={toggleBagModal} itemsInBag={itemsInBag} />
+          )}
+          <Navigation toggleBag={toggleBagModal} />
+          <Home />
+        </BagContext.Provider>
+      </ProductContext.Provider>
     </div>
   );
 }
 
-export {BagContext};
+export { BagContext, ProductContext };
 export default App;
