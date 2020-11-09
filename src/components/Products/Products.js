@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Products.module.scss";
 import Product from "../Product/Product";
+import PRODUCT_LIST from './products-data';
 
 const Products = ({PRODUCT_LIST}) => {
   return (
@@ -10,8 +11,7 @@ const Products = ({PRODUCT_LIST}) => {
           return (
             <Product
               key={product.id}
-              name={product.name}
-              imageUrl={product.imageUrl}
+              product={product}
             />
           );
         })}

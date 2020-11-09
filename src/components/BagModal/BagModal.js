@@ -1,32 +1,8 @@
 import React from "react";
 import styles from "./BagModal.module.scss";
 
-const fakeProductsList = [
-  {
-    id: 1,
-    name: "product name",
-    type: undefined,
-    description: undefined,
-    color: "yellow",
-    size: undefined,
-    inCart: undefined,
-    images: undefined,
-    imageUrl: "../../assets/images/sm-lady-blue-bg.jpg",
-  },
-  {
-    id: 1,
-    name: "product name",
-    type: undefined,
-    description: undefined,
-    color: "yellow",
-    size: undefined,
-    inCart: undefined,
-    images: undefined,
-    imageUrl: "../../assets/images/sm-lady-blue-bg.jpg",
-  },
-];
-
-const BagModal = ({ toggleBag }) => {
+const BagModal = ({ toggleBag, itemsInBag }) => {
+  console.log('Products In Bag: '+ itemsInBag.length);
   return (
     <div className={styles.BagModal}>
       <div className={styles.btnContainer}>
@@ -42,7 +18,7 @@ const BagModal = ({ toggleBag }) => {
         </svg>
       </div>
       <div className={styles.productsContainer}>
-        {fakeProductsList.map((product) => {
+        {itemsInBag.map((product) => {
           return (
             <div className={styles.product}>
               <div className={styles.image}></div>

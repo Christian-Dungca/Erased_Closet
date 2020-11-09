@@ -5,7 +5,8 @@
   right: 0;
   background-color: white;
   width: 40%;
-  height: 100vh;
+  min-height: 100vh;
+  height: max-content;
   z-index: 1000;
   scroll-behavior: none;
 }

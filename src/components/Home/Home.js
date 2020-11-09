@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import styles from "./Home.module.scss";
 import Landing from "../Landing/Landing";
 import About from "../About/About";
+import Filter from "../Filters/Filter";
 import Products from "../Products/Products";
 import listOfProducts from "../Products/products-data";
 import SearchBar from "../SearchBar/SearchBar";
@@ -53,11 +55,16 @@ const Home = () => {
     <div>
       <Landing />
       <About />
-      <SearchBar
+      {/* <SearchBar
         value={word}
         handleFilterChange={(e) => handleFilterChange(e.target.value)}
-      />
-      <Products PRODUCT_LIST={word.length < 1 ? Product_List : filterDisplay} />
+      /> */}
+      <div className={styles.FilterProductsContainer}>
+        <Filter />
+        <Products
+          PRODUCT_LIST={word.length < 1 ? Product_List : filterDisplay}
+        />
+      </div>
     </div>
   );
 };
