@@ -1,19 +1,18 @@
 // Top Level Container 
 .Products {
-    background-color: rgb(255, 224, 233);
+    // background-color: rgb(255, 224, 233);
     width: 100%;
     height: max-content;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding-top: 5rem;
 }
 
 .productGallery {
-    background-color: rgb(209, 133, 216);
+    // background-color: rgb(209, 133, 216);
     width: 90%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 3rem;
-    grid-auto-rows: 35rem;
+    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+    grid-auto-rows: minmax(30rem, 70vh);
+    grid-gap: 8rem;
+    margin-bottom: 10rem;
 }

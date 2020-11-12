@@ -1,14 +1,48 @@
+// Main Container
 .Filter {
-
+    background-color: lightcoral;
+    width: 20%;
+    height: 95vh;
+    font-family: var(--font-heebo);
+    font-size: 1.8rem;
 }
 
+// Clothing Filter secton
 .clothingFilter {
+    width: 100%;
+    background-color: lightcyan;
 
+    .clothingTitle {
+        font-size: 2.2rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+    }   
+    
+    .clothingList {
+        line-height: 160%;
+
+        li {
+            cursor: pointer;
+        }
+    }
 }
 
+// Color Filter Section
 .colorFilter {
+    background-color: lightslategray;
+    width: 100%;
 
-}
+    .colorTitle {
+        font-size: 2.2rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
 
-input {
+    .colorList {
+        line-height: 160%;
+
+        label {
+            cursor: pointer;
+        }
+    }
 }

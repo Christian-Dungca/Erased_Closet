@@ -4,9 +4,10 @@ import styles from "./Filter.module.scss";
 const Filter = () => {
   return (
     <div className={styles.Filter}>
+
       <div className={styles.clothingFilter}>
-        <h5> Clothing </h5>
-        <ul>
+        <h5 className={styles.clothingTitle}> Apparel </h5>
+        <ul className={styles.clothingList}>
           <li>T-Shirts</li>
           <li>Pants</li>
           <li>Hoodies</li>
@@ -14,8 +15,8 @@ const Filter = () => {
         </ul>
       </div>
       <div className={styles.colorFilter}>
-        <h5> Color </h5>
-        <ul>
+        <h5 className={styles.colorTitle}> Color </h5>
+        <ul className={styles.colorList}>
           <li>
               <input type="checkbox"></input>
               <label>Black</label>

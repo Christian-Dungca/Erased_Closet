@@ -18,6 +18,13 @@ import SearchBar from "../SearchBar/SearchBar";
 */
 
 const Home = () => {
+  // Side Navigation Hides Filter Options
+  const [hideFilter, setFilter] = useState(false);
+
+  const handleFilter = () => {
+    setFilter(!hideFilter);
+  };
+
   // Word keeps track of the input field
   const [word, setWord] = useState("");
   // The orignal array of Products
@@ -59,11 +66,17 @@ const Home = () => {
         value={word}
         handleFilterChange={(e) => handleFilterChange(e.target.value)}
       /> */}
-      <div className={styles.FilterProductsContainer}>
-        <Filter />
-        <Products
-          PRODUCT_LIST={word.length < 1 ? Product_List : filterDisplay}
-        />
+      <div className={styles.navAndProductsContainer}>
+        <div className={styles.nav}>
+          <p onClick={handleFilter} className={styles.filterBtn}> filters </p>
+    <h3 className={styles.productsTitle}> Clothing / {Product_List.length} In Stock </h3>
+        </div>
+        <div className={styles.FilterProductsContainer}>
+          {hideFilter && <Filter className={styles.sticky} />}
+          <Products
+            PRODUCT_LIST={word.length < 1 ? Product_List : filterDisplay}
+          />
+        </div>
       </div>
     </div>
   );
