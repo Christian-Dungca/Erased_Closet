@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import styles from "./Home.module.scss";
 import Landing from "../Landing/Landing";
 import About from "../About/About";
@@ -6,18 +6,42 @@ import Filter from "../Filters/Filter";
 import Products from "../Products/Products";
 import listOfProducts from "../Products/products-data";
 import SearchBar from "../SearchBar/SearchBar";
+import filterReducer from "../../reducers/filterReducer";
 
-/* 
-    complex searching based on every word
-    
-    [] have to check if the words contain spaces / white space
-    [] created a new array of words, from the original string which is broken up by whitespace
-    [] use that array of words to check against each product
-        --> for each word in the array words, does the color contain that value, does the name contain that value
-        --> has to contain all of the words
-*/
+const Home = ({productsInBag}) => {
+  // Filter Reducer
+  const [filter, dispatchFilter] = useReducer(filterReducer, "accessories");
 
-const Home = () => {
+  const handleShowAll = () => {
+    dispatchFilter({ type: "SHOW_ALL" });
+  };
+
+  const handleShowShirts = () => {
+    dispatchFilter({ type: "SHOW_SHIRTS" });
+  };
+
+  const filteredProducts = listOfProducts.filter((item) => {
+    if (filter === "ALL") {
+      return true;
+      console.log(item.type)
+    }
+    if (filter === "shirt" && item.type === "shirt") {
+      return true;
+    }
+    if (filter === "pants" && item.type === "pants") {
+      return true;
+    }
+    if (filter === "hoodies" && item.type === "hoodie") {
+      return true;
+    }
+    if (filter === "accessories" && item.type === "accessory") {
+      return true;
+    }
+    return false;
+  });
+
+  console.table(filteredProducts);
+
   // Side Navigation Hides Filter Options
   const [hideFilter, setFilter] = useState(false);
 
@@ -25,56 +49,23 @@ const Home = () => {
     setFilter(!hideFilter);
   };
 
-  // Word keeps track of the input field
-  const [word, setWord] = useState("");
-  // The orignal array of Products
-  const [Product_List] = useState(listOfProducts);
-  // The filtered list of products based on SearchBar component's value
-  const [filterDisplay, setFilterDisplay] = useState([]);
-
-  // Function runs when input is changed
-  const handleFilterChange = (e) => {
-    setWord(e);
-    let oldList = Product_List.map((product) => {
-      return {
-        ...product,
-        name: product.name.toLowerCase(),
-        color: product.color.toLowerCase(),
-      };
-    });
-
-    if (word !== "") {
-      // If user types something input, then the newList will reflect that value
-      let newList = [];
-      newList = oldList.filter(
-        (product) =>
-          product.name.includes(word.toLowerCase()) ||
-          product.color.includes(word.toLowerCase())
-      );
-      setFilterDisplay(newList);
-    } else {
-      // If the user doesn't type anthing then original list of items will be given
-      setFilterDisplay(Product_List);
-    }
-  };
-
   return (
     <div>
       <Landing />
       <About />
-      {/* <SearchBar
-        value={word}
-        handleFilterChange={(e) => handleFilterChange(e.target.value)}
-      /> */}
       <div className={styles.navAndProductsContainer}>
         <div className={styles.nav}>
-          <p onClick={handleFilter} className={styles.filterBtn}> filters </p>
-    <h3 className={styles.productsTitle}> Clothing / {Product_List.length} In Stock </h3>
+          <p onClick={handleFilter} className={styles.filterBtn}>
+            filters
+          </p>
+          <h3 className={styles.productsTitle}>
+            Clothing / {filteredProducts.length} In Stock
+          </h3>
         </div>
         <div className={styles.FilterProductsContainer}>
-          {hideFilter && <Filter className={styles.sticky} />}
+          {hideFilter && <Filter handleShowShirts={handleShowShirts} />}
           <Products
-            PRODUCT_LIST={word.length < 1 ? Product_List : filterDisplay}
+            productsList={filteredProducts}
           />
         </div>
       </div>

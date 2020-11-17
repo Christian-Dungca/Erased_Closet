@@ -3,7 +3,7 @@ const PRODUCT_LIST = [
     {
         id: 1,
         name: 'product name',
-        type: undefined,
+        type: 'shirt',
         description: undefined,
         color: 'yellow', 
         size: undefined,
@@ -14,7 +14,7 @@ const PRODUCT_LIST = [
     {
         id: 2,
         name: 'product name',
-        type: undefined,
+        type: 'shirt',
         description: undefined,
         color: 'yellow', 
         size: undefined,
@@ -25,7 +25,7 @@ const PRODUCT_LIST = [
     {
         id: 3,
         name: 'product name',
-        type: undefined,
+        type: 'shirt',
         description: undefined,
         color: 'yellow', 
         size: undefined,
@@ -36,7 +36,7 @@ const PRODUCT_LIST = [
     {
         id: 4,
         name: 'product name',
-        type: undefined,
+        type: 'shirt',
         description: undefined,
         color: 'yellow', 
         size: undefined,
@@ -47,7 +47,7 @@ const PRODUCT_LIST = [
     {
         id: 5,
         name: 'product name',
-        type: undefined,
+        type: 'shirt',
         description: undefined,
         color: 'yellow', 
         size: undefined,
@@ -58,7 +58,7 @@ const PRODUCT_LIST = [
     {
         id: 6,
         name: 'product name',
-        type: undefined,
+        type: 'shirt',
         description: undefined,
         color: 'yellow', 
         size: undefined,
@@ -69,7 +69,7 @@ const PRODUCT_LIST = [
     {
         id: 7,
         name: 'shirt',
-        type: undefined,
+        type: 'pants',
         description: undefined,
         color: 'green',   
         size: undefined,
@@ -80,7 +80,7 @@ const PRODUCT_LIST = [
     {
         id: 8,
         name: 'pants',
-        type: undefined,
+        type: 'pants',
         description: undefined,
         color: 'green', 
         size: undefined,
@@ -91,7 +91,7 @@ const PRODUCT_LIST = [
     {
         id: 9,
         name: 'product name',
-        type: undefined,
+        type: 'pants',
         description: undefined,
         color: 'black', 
         size: undefined,
@@ -102,7 +102,7 @@ const PRODUCT_LIST = [
     {
         id: 10,
         name: 'product name',
-        type: undefined,
+        type: 'pants',
         description: undefined,
         color: 'black', 
         size: undefined,
@@ -113,7 +113,7 @@ const PRODUCT_LIST = [
     {
         id: 11,
         name: 'product name',
-        type: undefined,
+        type: 'hoodie',
         description: undefined,
         color: 'black', 
         size: undefined,
@@ -124,7 +124,7 @@ const PRODUCT_LIST = [
     {
         id: 12,
         name: 'product name',
-        type: undefined,
+        type: 'hoodie',
         description: undefined,
         color: 'black', 
         size: undefined,
@@ -135,7 +135,7 @@ const PRODUCT_LIST = [
     {
         id: 13,
         name: 'product name',
-        type: undefined,
+        type: 'accessory',
         description: undefined,
         color: 'yellow', 
         size: undefined,

@@ -1,23 +1,25 @@
 import React, { useContext } from "react";
 import styles from "./Products.module.scss";
 import Product from "../Product/Product";
-import {ProductContext} from "../App/App";
-// import PRODUCT_LIST from './products-data';
+// import {ProductContext} from "../App/App";
 
-const Products = () => {
+const Products = ({productList}) => {
+  // console.log('%c ************', 'font-size: 20px; background-color: pink')
+  // console.table(productList)
 
-  const PRODUCT_LIST = useContext(ProductContext)
+  // const productList = useContext(ProductContext)
+
   return (
     <div className={styles.Products}>
       <div className={styles.productGallery}>
-        {PRODUCT_LIST.map((product) => {
+        {/* {productList.map((product) => {
           return (
             <Product
               key={product.id}
               product={product}
             />
           );
-        })}
+        })} */}
       </div>
     </div>
   );
