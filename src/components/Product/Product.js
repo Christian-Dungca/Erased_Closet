@@ -13,13 +13,9 @@ const Product = ({ id, product }) => {
     });
   };
 
-  //   const backgroundImage = { background: `url(${imageUrl})`, backgroundSize: 'cover' };
-  //     console.log(backgroundImage.background);
-
   return (
     <div className={styles.Product}>
       <div className={styles.productImage}> 
-        {/* CLICKING THIS WILL TRIGGER A DISPATCH TO REDUCER FUNCTION */}
         <p className={styles.toggleBtn} onClick={handleBaggedProduct}>
           TOGGLE FROM BAG
         </p>

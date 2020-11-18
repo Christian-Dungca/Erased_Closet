@@ -1,8 +1,15 @@
 import React from "react";
 import styles from "./BagModal.module.scss";
 
-const BagModal = ({ toggleBag, itemsInBag }) => {
-  console.log('Products In Bag: '+ itemsInBag.length);
+const BagModal = ({ toggleBag, itemsInBag, dispatchProduct}) => {
+  
+  const handleBaggedProduct = (product) => {
+    dispatchProduct({
+      type: product.inBag ? "REMOVE_FROM_BAG" : "ADD_TO_BAG",
+      id: product.id,
+    });
+  };
+
   return (
     <div className={styles.BagModal}>
       <div className={styles.btnContainer}>
@@ -30,7 +37,7 @@ const BagModal = ({ toggleBag, itemsInBag }) => {
                     typesetting industry. Lorem Ipsum has been the industry's
                     standard dummy text ever since the 1500s.
                   </p>
-                  <p className={styles.removeBtn}>Remove</p>
+                  <p onClick={() => handleBaggedProduct(product)} className={styles.removeBtn}>Remove</p>
                 </div>
               </div>
             </div>

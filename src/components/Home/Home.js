@@ -4,26 +4,17 @@ import Landing from "../Landing/Landing";
 import About from "../About/About";
 import Filter from "../Filters/Filter";
 import Products from "../Products/Products";
-import listOfProducts from "../Products/products-data";
+// import listOfProducts from "../Products/products-data";
 import SearchBar from "../SearchBar/SearchBar";
 import filterReducer from "../../reducers/filterReducer";
 
 const Home = ({productsInBag}) => {
-  // Filter Reducer
-  const [filter, dispatchFilter] = useReducer(filterReducer, "accessories");
-
-  const handleShowAll = () => {
-    dispatchFilter({ type: "SHOW_ALL" });
-  };
-
-  const handleShowShirts = () => {
-    dispatchFilter({ type: "SHOW_SHIRTS" });
-  };
-
-  const filteredProducts = listOfProducts.filter((item) => {
+  const color = 'black';
+  // Style Filter Reducer
+  const [filter, dispatchFilter] = useReducer(filterReducer, "ALL");
+  const filteredProducts = productsInBag.filter((item) => {
     if (filter === "ALL") {
       return true;
-      console.log(item.type)
     }
     if (filter === "shirt" && item.type === "shirt") {
       return true;
@@ -39,8 +30,17 @@ const Home = ({productsInBag}) => {
     }
     return false;
   });
-
-  console.table(filteredProducts);
+  console.log('-----fitleredProducts-----')
+  console.table(filteredProducts)
+  
+  const colorFilteredProducts = filteredProducts.filter((item) => {
+    if (item.color === color) return true;
+    return false
+  })
+  
+  console.log('-----colorFilteredProducts-----')
+  console.table(colorFilteredProducts)
+  
 
   // Side Navigation Hides Filter Options
   const [hideFilter, setFilter] = useState(false);
@@ -63,7 +63,7 @@ const Home = ({productsInBag}) => {
           </h3>
         </div>
         <div className={styles.FilterProductsContainer}>
-          {hideFilter && <Filter handleShowShirts={handleShowShirts} />}
+          {hideFilter && <Filter dispatchFilter={dispatchFilter} />}
           <Products
             productsList={filteredProducts}
           />

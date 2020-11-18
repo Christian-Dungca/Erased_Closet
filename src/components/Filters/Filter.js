@@ -1,17 +1,29 @@
 import React from "react";
 import styles from "./Filter.module.scss";
 
-const Filter = () => {
+const Filter = ({dispatchFilter}) => {
+
+  const handleFilterAll = () => {
+    dispatchFilter({ type: "SHOW_ALL" });
+  };
+
+  const handleFilter = (typeText) => {
+    dispatchFilter({
+      type: `SHOW_${typeText}`
+    })
+  }
+
   return (
     <div className={styles.Filter}>
 
       <div className={styles.clothingFilter}>
         <h5 className={styles.clothingTitle}> Apparel </h5>
         <ul className={styles.clothingList}>
-          <li>T-Shirts</li>
-          <li>Pants</li>
-          <li>Hoodies</li>
-          <li>Accessories</li>
+          <li onClick={handleFilterAll}>All Items</li>
+          <li onClick={() => handleFilter('SHIRTS')}>T-Shirts</li>
+          <li onClick={() => handleFilter('PANTS')}>Pants</li>
+          <li onClick={() => handleFilter('HOODIES')}>Hoodies</li>
+          <li onClick={() => handleFilter('ACCESSORIES')}>Accessories</li>
         </ul>
       </div>
       <div className={styles.colorFilter}>

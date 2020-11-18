@@ -3,12 +3,9 @@ const bagReducer = (state, action) => {
         case 'ADD_TO_BAG':
             return state.map(product => {
                 if(product.id === action.id) {
-                    console.log(product.id, action.id);
                     console.log('ADDED TO BAG!! ');
-                    console.log('NEW STATE: ' + state);
                     return {...product, inBag: true}
                 } else {
-                    console.log(product.id, action.id)
                     console.log('Not added to bag')
                     return product;
                 }
