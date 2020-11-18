@@ -12,11 +12,11 @@ const ProductContext = createContext(null);
 function App() {
   // Bag reducer to Add and remove items from BagModal
   const [productsInBag, dispatchProduct] = useReducer(bagReducer, PRODUCT_LIST);
-  console.log('----- productsInBag ------')
-  console.table(productsInBag)
+  // console.log('----- productsInBag ------')
+  // console.table(productsInBag)
   const itemsInBag = productsInBag.filter((product) => product.inBag === true);
-  console.log('----- itemsInBag ------')
-  console.table(itemsInBag)
+  // console.log('----- itemsInBag ------')
+  // console.table(itemsInBag)
   // BagModal State => either opened or closed
   const [bagModal, toggleBag] = useState(false);
   // Handler will toggle BagModal

@@ -8,8 +8,16 @@ import Products from "../Products/Products";
 import SearchBar from "../SearchBar/SearchBar";
 import filterReducer from "../../reducers/filterReducer";
 
-const Home = ({productsInBag}) => {
-  const color = 'black';
+const Home = ({ productsInBag }) => {
+  const [color, setColor] = useState("ALL");
+  console.log(color);
+
+  const handleColorChange = (colorInput) => {
+    const newColor = colorInput === color ? 'ALL' : colorInput;
+    console.log([color, colorInput, newColor]);
+    setColor(newColor);
+  };
+
   // Style Filter Reducer
   const [filter, dispatchFilter] = useReducer(filterReducer, "ALL");
   const filteredProducts = productsInBag.filter((item) => {
@@ -30,17 +38,17 @@ const Home = ({productsInBag}) => {
     }
     return false;
   });
-  console.log('-----fitleredProducts-----')
-  console.table(filteredProducts)
-  
+  // console.log("-----fitleredProducts-----");
+  // console.table(filteredProducts);
+
   const colorFilteredProducts = filteredProducts.filter((item) => {
-    if (item.color === color) return true;
-    return false
-  })
-  
-  console.log('-----colorFilteredProducts-----')
-  console.table(colorFilteredProducts)
-  
+    if (color === "ALL") return true;
+    if (item.color === color.toLowerCase()) return true;
+    return false;
+  });
+
+  console.log("-----colorFilteredProducts-----");
+  console.table(colorFilteredProducts);
 
   // Side Navigation Hides Filter Options
   const [hideFilter, setFilter] = useState(false);
@@ -59,14 +67,17 @@ const Home = ({productsInBag}) => {
             filters
           </p>
           <h3 className={styles.productsTitle}>
-            Clothing / {filteredProducts.length} In Stock
+            Clothing / {colorFilteredProducts.length} In Stock
           </h3>
         </div>
         <div className={styles.FilterProductsContainer}>
-          {hideFilter && <Filter dispatchFilter={dispatchFilter} />}
-          <Products
-            productsList={filteredProducts}
-          />
+          {hideFilter && (
+            <Filter
+              dispatchFilter={dispatchFilter}
+              handleColorChange={handleColorChange}
+            />
+          )}
+          <Products productsList={colorFilteredProducts} />
         </div>
       </div>
     </div>
