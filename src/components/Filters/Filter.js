@@ -5,8 +5,8 @@ const Filter = ({ dispatchFilter, handleColorChange }) => {
   const handleFilterAll = () => {
     dispatchFilter({ type: "SHOW_ALL" });
   };
-// If key of checkbox !== state value then checked === false
-  const handleFilter = (typeText) => {
+
+  const handleFilterChange = (typeText) => {
     dispatchFilter({
       type: `SHOW_${typeText}`,
     });
@@ -18,10 +18,10 @@ const Filter = ({ dispatchFilter, handleColorChange }) => {
         <h5 className={styles.clothingTitle}> Apparel </h5>
         <ul className={styles.clothingList}>
           <li onClick={handleFilterAll}>All Items</li>
-          <li onClick={() => handleFilter("SHIRTS")}>T-Shirts</li>
-          <li onClick={() => handleFilter("PANTS")}>Pants</li>
-          <li onClick={() => handleFilter("HOODIES")}>Hoodies</li>
-          <li onClick={() => handleFilter("ACCESSORIES")}>Accessories</li>
+          <li onClick={() => handleFilterChange("SHIRTS")}>T-Shirts</li>
+          <li onClick={() => handleFilterChange("PANTS")}>Pants</li>
+          <li onClick={() => handleFilterChange("HOODIES")}>Hoodies</li>
+          <li onClick={() => handleFilterChange("ACCESSORIES")}>Accessories</li>
         </ul>
       </div>
       <div className={styles.colorFilter}>

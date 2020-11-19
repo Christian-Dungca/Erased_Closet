@@ -15,14 +15,17 @@ const Product = ({ id, product }) => {
 
   return (
     <div className={styles.Product}>
-      <div className={styles.productImage}> 
+      <div className={styles.productImage}>
         <p className={styles.toggleBtn} onClick={handleBaggedProduct}>
           TOGGLE FROM BAG
         </p>
       </div>
       <div className={styles.productDetails}>
         <p className={styles.productName}>{product.name}</p>
-        <p className={styles.productDescription}>lorem ipsum components is defined but never is used. suave thick wool sweater</p>
+        <p className={styles.productDescription}>
+          lorem ipsum components is defined but never is used. suave thick wool
+          sweater
+        </p>
       </div>
     </div>
   );

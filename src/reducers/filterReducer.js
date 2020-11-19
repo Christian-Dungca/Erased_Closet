@@ -3,7 +3,7 @@ const filterReducer = (state, action) => {
         case 'SHOW_ALL':
             return 'ALL'
         case 'SHOW_SHIRTS':
-            return 'shirt'
+            return 'shirts'
         case 'SHOW_PANTS':
             return 'pants'
         case 'SHOW_HOODIES':
