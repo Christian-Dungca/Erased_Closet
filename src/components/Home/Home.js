@@ -39,8 +39,11 @@ const Home = ({ productsInBag }) => {
     return false;
   });
 
+  const isColorListFalse = Object.values(colorFilter).every((val) => val === false);
+  console.log(isColorListFalse)
+
   const colorFilteredProducts = filteredProducts.filter((item) => {
-    console.log(Object.values(colorFilter))
+    if (isColorListFalse) return true;
     if (colorFilter[item.color] === true) return true;
   });
 
