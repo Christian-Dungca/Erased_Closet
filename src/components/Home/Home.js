@@ -7,14 +7,26 @@ import Products from "../Products/Products";
 import SearchBar from "../SearchBar/SearchBar";
 import filterReducer from "../../reducers/filterReducer";
 
+const initialColorState = {
+  yellow: false,
+  black: false,
+  red: false,
+  orange: false,
+  blue: false,
+  green: false,
+  white: false,
+  beige: false,
+};
+
 const Home = ({ productsInBag }) => {
   const [isFilterOpen, setFilter] = useState(false);
   const [typeFilter, dispatchFilter] = useReducer(filterReducer, "ALL");
-  const [colorFilter, setColor] = useState("ALL");
+  const [colorFilter, setColor] = useState(initialColorState);
+  console.log(colorFilter);
 
   const handleColorChange = (colorInput) => {
-    const newColor = colorInput === colorFilter ? "ALL" : colorInput;
-    setColor(newColor);
+    const isColorSet = colorFilter[colorInput];
+    setColor({ ...colorFilter, [colorInput]: !isColorSet });
   };
 
   const handleFilter = () => {
@@ -28,9 +40,8 @@ const Home = ({ productsInBag }) => {
   });
 
   const colorFilteredProducts = filteredProducts.filter((item) => {
-    if (colorFilter === "ALL") return true;
-    if (item.color === colorFilter.toLowerCase()) return true;
-    return false;
+    console.log(Object.values(colorFilter))
+    if (colorFilter[item.color] === true) return true;
   });
 
   return (
