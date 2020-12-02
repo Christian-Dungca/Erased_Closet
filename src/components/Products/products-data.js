@@ -2,11 +2,11 @@
 const productsList = [
     {
         id: 1,
-        name: 'product name',
+        name: 'World Wide Syndicate Sweatshirt',
         type: 'shirts',
-        description: undefined,
-        color: 'yellow', 
-        size: undefined,
+        description: 'V-neck shirt with lapel collar. Long sleeves with cuffs. Front tie at hem. Front button closure. ',
+        color: 'green', 
+        size: 'medium',
         inBag: false,
         images: undefined,
         imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'

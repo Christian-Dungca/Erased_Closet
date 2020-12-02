@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Products.module.scss";
 import Product from "../Product/Product";
 
@@ -7,7 +8,11 @@ const Products = ({ productsList }) => {
     <div className={styles.Products}>
       <div className={styles.productGallery}>
         {productsList.map((product) => {
-          return <Product key={product.id} product={product} />;
+          return (
+            <Link to={`product/${product.id}`} key={product.id}>
+              <Product product={product} />
+            </Link>
+          );
         })}
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React, { useReducer, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
 import Landing from "../Landing/Landing";
 import About from "../About/About";
@@ -39,8 +40,10 @@ const Home = ({ productsInBag }) => {
     return false;
   });
 
-  const isColorListFalse = Object.values(colorFilter).every((val) => val === false);
-  console.log(isColorListFalse)
+  const isColorListFalse = Object.values(colorFilter).every(
+    (val) => val === false
+  );
+  console.log(isColorListFalse);
 
   const colorFilteredProducts = filteredProducts.filter((item) => {
     if (isColorListFalse) return true;
