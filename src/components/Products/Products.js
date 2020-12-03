@@ -9,9 +9,9 @@ const Products = ({ productsList }) => {
       <div className={styles.productGallery}>
         {productsList.map((product) => {
           return (
-            <Link to={`product/${product.id}`} key={product.id}>
-              <Product product={product} />
-            </Link>
+            // <Link to={`product/${product.id}`} key={product.id}>
+              <Product product={product} key={product.id} />
+            // </Link> 
           );
         })}
       </div>

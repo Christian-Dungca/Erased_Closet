@@ -51,7 +51,7 @@ const Home = ({ productsInBag }) => {
   });
 
   return (
-    <div>
+    <div className={styles.Home}>
       <Landing />
       <About />
       <div className={styles.navAndProductsContainer}>
