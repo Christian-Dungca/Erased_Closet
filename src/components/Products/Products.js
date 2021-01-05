@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+// import { Link } from "react-router-dom";
 import styles from "./Products.module.scss";
 import Product from "../Product/Product";
 
@@ -18,5 +18,6 @@ const Products = ({ productsList }) => {
     </div>
   );
 };
+
 
 export default Products;

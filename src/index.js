@@ -6,10 +6,10 @@ import { createStore, combineReducers } from "redux";
 import "./index.css";
 import App from "./components/App/App";
 import productsReducer from "./store/reducers/products";
-import bagReducer from "./store/reducers/bag";
+import favoritesReducer from "./store/reducers/favorites";
 
 const rootReducer = combineReducers({
-  bag: bagReducer,
+  favorites: favoritesReducer,
   products: productsReducer
 })
 

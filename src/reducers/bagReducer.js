@@ -3,25 +3,25 @@ const bagReducer = (state=[], action) => {
         case 'ADD_TO_BAG':
             return state.map(product => {
                 if(product.id === action.id) {
-                    console.log('ADDED TO BAG!! ');
+                    // console.log('ADDED TO BAG!! ');
                     return {...product, inBag: true}
                 } else {
-                    console.log('Not added to bag')
+                    // console.log('Not added to bag')
                     return product;
                 }
             })
         case 'REMOVE_FROM_BAG':
             return state.map(product => {
                 if(product.id === action.id) {
-                    console.log('Removed from bag')
+                    // console.log('Removed from bag')
                     return {...product, inBag: false}
                 } else {
-                    console.log('Not Removed from bag')
+                    // console.log('Not Removed from bag')
                     return product;
                 }
             })
         default:
-            console.log('NOTHING HAPPENED!')
+            // console.log('NOTHING HAPPENED!')
             return state;
     }
 }

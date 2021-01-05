@@ -23,7 +23,7 @@ const Home = ({ productsInBag }) => {
   const [isFilterOpen, setFilter] = useState(false);
   const [typeFilter, dispatchFilter] = useReducer(filterReducer, "ALL");
   const [colorFilter, setColor] = useState(initialColorState);
-  console.log(colorFilter);
+  // console.log(colorFilter);
 
   const handleColorChange = (colorInput) => {
     const isColorSet = colorFilter[colorInput];
@@ -43,7 +43,7 @@ const Home = ({ productsInBag }) => {
   const isColorListFalse = Object.values(colorFilter).every(
     (val) => val === false
   );
-  console.log(isColorListFalse);
+  // console.log(isColorListFalse);
 
   const colorFilteredProducts = filteredProducts.filter((item) => {
     if (isColorListFalse) return true;

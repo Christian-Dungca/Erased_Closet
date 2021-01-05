@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./BagModal.module.scss";
+import { connect } from "react-redux";
 
-const BagModal = ({ toggleBag, itemsInBag, dispatchProduct}) => {
+const BagModal = ({ toggleBag, itemsInBag, dispatchProduct, type, favs}) => {
+
+  console.log(favs);
   
   const handleBaggedProduct = (product) => {
     dispatchProduct({
@@ -48,4 +51,11 @@ const BagModal = ({ toggleBag, itemsInBag, dispatchProduct}) => {
   );
 };
 
-export default BagModal;
+const mapStateToProps = (state) => {
+  return {
+    favs: state.favorites.favorites,
+    type: state.favorites.type
+  }
+}
+
+export default connect(mapStateToProps)(BagModal);

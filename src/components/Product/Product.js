@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 import styles from "./Product.module.scss";
 import { BagContext } from "../App/App";
 
-const Product = ({ id, product }) => {
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/favorites';
+
+const Product = ({ id, product, addProductToFavorites, removeFromFavorites }) => {
   const dispatch = useContext(BagContext);
 
   const handleBaggedProduct = () => {
-    dispatch({
-      type: product.inBag ? "REMOVE_FROM_BAG" : "ADD_TO_BAG",
-      id: product.id,
-    });
+    addProductToFavorites(product.id)
+  };
+  const removeProductFromFavorites = () => {
+    removeFromFavorites(product.id)
   };
 
   const nameFirstHalf = product.name
@@ -23,24 +26,33 @@ const Product = ({ id, product }) => {
     .map((word) => word + " ");
 
   return (
-    <div className={styles.Product}>
-      <h2 className={styles.erasedName}> Erased Closet</h2>
-      <Link
+    <div className={styles.Product} >
+      <h2  onClick={handleBaggedProduct} style={{marginBottom: '200px', color: 'white'}}> Add</h2>
+      <h2  onClick={removeProductFromFavorites} style={{color: 'white'}}> Remove</h2>
+      {/* <Link
         to={`product/${product.id}`}
         className={styles.link}
-      >
+      > */}
         <div className={styles.innerImage}>
           <h5 className={styles.productName}>
             {nameFirstHalf}{" "}
             <span className={styles.newline}> {nameLastHalf} </span>{" "}
           </h5>
         </div>
-      </Link>
+      {/* </Link> */}
     </div>
   );
 };
 
-export default Product;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addProductToFavorites: (id) => {dispatch(actions.addToFavorites(id))},
+    removeFromFavorites: (id) => {dispatch(actions.removeFromFavorites(id))}
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Product);
 
 // <div className={styles.Product}>
 //   <div className={styles.productImage}>
