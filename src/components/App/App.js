@@ -5,7 +5,7 @@ import Home from "../Home/Home";
 import Navigation from "../Navigation/Navigation";
 import BagModal from "../BagModal/BagModal";
 import ProductPage from "../ProductPage/ProductPage";
-import productsList from "../Products/products-data";
+import productsList from "../../products-data";
 import bagReducer from "../../reducers/bagReducer";
 
 const BagContext = createContext(null);
@@ -21,30 +21,28 @@ const App = () => {
   };
 
   return (
-    <Router>
-      <div className={styles.App}>
-        <ProductContext.Provider value={products}>
-          <BagContext.Provider value={dispatchProduct}>
-            {isBagOpen && (
-              <BagModal
-                dispatchProduct={dispatchProduct}
-                itemsInBag={itemsInBag}
-                toggleBag={toggleBagModal}
-              />
-            )}
-            <Navigation toggleBagModal={toggleBagModal} />
-            <Switch>
-              <Route path="/" exact>
-                <Home productsInBag={products} />
-              </Route>
-              <Route path="/product/:id">
-                <ProductPage products={products} />
-              </Route>
-            </Switch>
-          </BagContext.Provider>
-        </ProductContext.Provider>
-      </div>
-    </Router>
+    <div className={styles.App}>
+      <ProductContext.Provider value={products}>
+        <BagContext.Provider value={dispatchProduct}>
+          {isBagOpen && (
+            <BagModal
+              dispatchProduct={dispatchProduct}
+              itemsInBag={itemsInBag}
+              toggleBag={toggleBagModal}
+            />
+          )}
+          <Navigation toggleBagModal={toggleBagModal} />
+          <Switch>
+            <Route path="/" exact>
+              <Home productsInBag={products} />
+            </Route>
+            <Route path="/product/:id">
+              <ProductPage products={products} />
+            </Route>
+          </Switch>
+        </BagContext.Provider>
+      </ProductContext.Provider>
+    </div>
   );
 };
 
