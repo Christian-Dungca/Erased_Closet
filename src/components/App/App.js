@@ -1,7 +1,8 @@
 import React, { createContext, useReducer, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styles from "./App.module.scss";
-import Home from "../Home/Home";
+// import Home from "../Home/Home";
+import Home from "../Home/NHome";
 import Navigation from "../Navigation/Navigation";
 import BagModal from "../BagModal/BagModal";
 import ProductPage from "../ProductPage/ProductPage";
@@ -31,7 +32,7 @@ const App = () => {
               toggleBag={toggleBagModal}
             />
           )}
-          <Navigation toggleBagModal={toggleBagModal} />
+          {/* <Navigation toggleBagModal={toggleBagModal} /> */}
           <Switch>
             <Route path="/" exact>
               <Home productsInBag={products} />

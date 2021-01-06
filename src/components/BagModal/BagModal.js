@@ -13,6 +13,8 @@ const BagModal = ({ toggleBag, itemsInBag, dispatchProduct, type, favs}) => {
     });
   };
 
+//on mount get products from Redux Storec
+
   return (
     <div className={styles.BagModal}>
       <div className={styles.btnContainer}>
