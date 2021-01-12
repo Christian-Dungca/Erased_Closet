@@ -1,0 +1,71 @@
+.ProductsPage {
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+
+  .leftContainer {
+    width: 50%;
+    height: 100%;
+    // background-color: palegoldenrod;
+    //   background-color: #ebeeef;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    .titleContainer {
+      // background-color: rgb(255, 110, 110);
+      width: max-content;
+      margin-top: 10rem;
+      text-transform: uppercase;
+      .mainTitle {
+        font-family: var(--font-merriweather);
+        font-family: var(--font-montserrat);
+        font-size: 8rem;
+      }
+
+      .subTitle {
+        font-family: var(--font-merriweather);
+        font-size: 4.5rem;
+        color: rgb(65, 65, 65);
+      }
+    }
+  }
+
+  .rightContainer {
+    width: 50%;
+    height: 100%;
+    // background-color: powderblue;
+    display: flex;
+    justify-content: flex-start;
+
+    .imageContainer {
+      width: 90%;
+      height: 100%;
+      background: url(../../assets/images/big-model-yellow-hat.jpg);
+      // background: url(../../assets/svgs/model.png);
+      background-color: #ebeeef;
+      background-size: cover;
+    }
+  }
+}
+
+.productNumber {
+  width: max-content;
+  height: 20rem;
+  // background-color: #444444;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+
+  h2 {
+    margin-left: 4rem;
+    font-size: 10rem;
+  }
+
+  span {
+    font-size: 7rem;
+  }
+}

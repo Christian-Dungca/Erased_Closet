@@ -4,6 +4,7 @@ import styles from "./App.module.scss";
 // import Home from "../Home/Home";
 import Home from "./products/components/Landing/NHome";
 // import Navigation from "./components/Navigation/Navigation";
+// import BagModal from "./components/BagModal/BagModal";
 import BagModal from "./components/BagModal/BagModal";
 import ProductPage from "./components/ProductPage/ProductPage";
 import productsList from "./data/products-data";
@@ -36,7 +37,7 @@ const App = () => {
             toggleBag={toggleBagModal}
             />
             )}
-          <Navigation />
+          {/* <Navigation /> */}
           <Switch>
             <Route path="/" exact>
               <ProductsPage />

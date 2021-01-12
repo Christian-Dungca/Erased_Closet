@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./Navigation.module.scss";
 
-const Navigation = () => {
+const Navigation = (props) => {
   const [logoShow, setLogo] = useState(true);
 
   return (
@@ -18,7 +18,7 @@ const Navigation = () => {
       <ul className={styles.Links}>
         <li> Login </li>
         <li> Search </li>
-        <li> Cart </li>
+        <li onClick={props.handleCart}> Cart </li>
       </ul>
     </nav>
   );
