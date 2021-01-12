@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./NHome.module.scss";
-import modelImg from "../../assets/svgs/model.png";
+import modelImg from "../../../assets/svgs/model.png";
 
 const Home = () => {
   return (

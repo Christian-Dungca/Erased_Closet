@@ -1,4 +1,4 @@
-import productList from '../../products-data';
+import productList from '../../data/products-data';
 
 const productsReducer = (state = {productList}, action) => {
     return state;

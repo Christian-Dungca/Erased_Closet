@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 import "./index.css";
-import App from "./components/App/App";
+import App from "./App";
 import productsReducer from "./store/reducers/products";
 import favoritesReducer from "./store/reducers/favorites";
 

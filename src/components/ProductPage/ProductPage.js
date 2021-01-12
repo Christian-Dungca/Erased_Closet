@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import ProductContext from "../App/App";
+import ProductContext from "../../App";
 import styles from "./ProductPage.module.scss";
 
 const ProductPage = ({ products }) => {

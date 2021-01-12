@@ -2,15 +2,15 @@ import React, { createContext, useReducer, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styles from "./App.module.scss";
 // import Home from "../Home/Home";
-import Home from "../Home/NHome";
-import Navigation from "../Navigation/Navigation";
-import BagModal from "../BagModal/BagModal";
-import ProductPage from "../ProductPage/ProductPage";
-import productsList from "../../products-data";
-import bagReducer from "../../reducers/bagReducer";
+import Home from "./products/components/Landing/NHome";
+import Navigation from "./components/Navigation/Navigation";
+import BagModal from "./components/BagModal/BagModal";
+import ProductPage from "./components/ProductPage/ProductPage";
+import productsList from "./data/products-data";
+import bagReducer from "./components/reactReducers/bagReducer";
 
 const BagContext = createContext(null);
-const ProductContext = createContext(null);
+const ProductContext = createContext(null); 
 
 const App = () => {
   const [isBagOpen, toggleBag] = useState(false);
