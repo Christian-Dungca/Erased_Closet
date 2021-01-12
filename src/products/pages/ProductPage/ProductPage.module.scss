@@ -1,0 +1,41 @@
+.ProductPage {
+  width: 100vw;
+  height: 100vh;
+  background-color: bisque;
+  position: relative;
+
+  display: grid;
+  grid-template-columns:
+    [main-image] 9fr
+    [details-start] 2fr
+    [image-start] 2fr
+    [details-end] 2fr
+    [image-end];
+  grid-template-rows: 1fr 60% 1fr;
+
+  .mainImage {
+    background-color: lightpink;
+    background: url(../../../assets/images/big-model-yellow-hat.jpg);
+    background-size: cover;
+    grid-column: main-image / image-start;
+    grid-row: 1 / -1;
+    cursor: pointer;
+}
+
+.nextImage {
+    background-color: lightgreen;
+    grid-column: image-start / image-end;
+    grid-row: 1 / -1;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(../../../assets/images/big-model-yellow-hat.jpg);
+    background-size: cover;
+  }
+
+  .detailsContainer {
+    background-color: white;
+    grid-column: details-start / details-end;
+    grid-row: 2 / 3;
+    position: relative;
+    z-index: 100;
+  }
+
+}
