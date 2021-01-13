@@ -10,7 +10,7 @@ const Navigation = (props) => {
     <nav className={styles.Navigation}>
       {logoShow && (
         <div className={styles.logoContainer}>
-          <Link className={styles.logo}>
+          <Link className={styles.logo} to="/">
             <h1 > Erased Closet</h1>
           </Link>
         </div>

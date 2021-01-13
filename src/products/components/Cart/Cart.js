@@ -1,13 +1,29 @@
-import React from 'react';
-import styles from './Cart.module.scss';
+import React from "react";
+import { connect } from "react-redux";
+import styles from "./Cart.module.scss";
 
 const Cart = (props) => {
-    return (
-        <div className={styles.Cart}>
-            <h1 onClick={props.handleCart}> close </h1>
-            <h1> this is the cart component</h1>
-        </div>
-    )
-}
+  console.log(props);
+  return (
+    <div className={styles.Cart}>
+      <h1 onClick={props.handleCart}> close </h1>
+      <h1> this is the cart component</h1>
+      {props.productsInCart.map((product) => {
+        return (
+          <div key={product.name}>
+            <h2> {product.name} </h2>
+            <h2> {product.price} </h2>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
-export default Cart;
+const mapStateToProps = (state) => {
+  return {
+    productsInCart: state.cart.cart,
+  };
+};
+
+export default connect(mapStateToProps)(Cart);
