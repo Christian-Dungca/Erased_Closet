@@ -2,14 +2,18 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initalState = {
   cart: [
-    { name: "Erased Shirt", price: 30, style: "Shirt/Clothing" },
-    { name: "Erased Hoodie", price: 60, style: "Hoodie/Clothing" },
+    { id: 1, name: "Erased Shirt", price: 30, style: "Shirt/Clothing" },
+    { id: 2, name: "Erased Hoodie", price: 60, style: "Hoodie/Clothing" },
   ],
 };
 
 const isInCart = (id, state) => {
-  const insideCart = state.cart.includes(id);
-  console.log(insideCart);
+  // const insideCart = state.cart.includes(id);
+
+  const insideCart = state.cart.filter(product => product.id === id)
+  console.log(id);
+  console.table(state);
+  console.log("is inside cart already:", insideCart);
   return insideCart;
 };
 
@@ -20,13 +24,14 @@ const favoritesReducer = (state = initalState, action) => {
       return { ...state, favorites: state.favorites.concat(action.id) };
     case actionTypes.REMOVE_FROM_CART:
       if (!isInCart(action.id, state)) return state;
-      console.log("is removed");
       const updatedState = {
         ...state,
-        favorites: state.favorites.filter((id) => {
-          return id !== action.id;
+        cart: state.cart.filter((product) => {
+          console.log(product.id, action.id)
+          return product.id !== action.id;
         }),
       };
+      console.log(updatedState)
       return updatedState;
     default:
       return state;

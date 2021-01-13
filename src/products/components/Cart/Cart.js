@@ -1,9 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
+import * as actions from "../../../store/actions/index";
 import styles from "./Cart.module.scss";
 
 const Cart = (props) => {
   console.log(props);
+
+  const removeFromCartHandler = (productID) => {
+    props.removeFromCart(productID);
+  };
   return (
     <div className={styles.Cart}>
       <h1 onClick={props.handleCart}> close </h1>
@@ -13,6 +18,13 @@ const Cart = (props) => {
           <div key={product.name}>
             <h2> {product.name} </h2>
             <h2> {product.price} </h2>
+            <p
+              onClick={() => {
+                removeFromCartHandler(product.id);
+              }}
+            >
+              Remove from cart
+            </p>
           </div>
         );
       })}
@@ -26,4 +38,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeFromCart: (prodId) => {
+      dispatch(actions.removeFromCart(prodId));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
