@@ -1,7 +1,18 @@
-import productList from '../../data/products-data';
+import productList from "../../data/products-data";
+import * as actionTypes from "../actions/actionTypes";
 
-const productsReducer = (state = {productList}, action) => {
-    return state;
+const initialState = {
+    products: productList,
+    filteredProducts: productList
 }
+
+const productsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.FETCH_PRODUCTS:
+      return state;
+    default:
+      return state;
+  }
+};
 
 export default productsReducer;

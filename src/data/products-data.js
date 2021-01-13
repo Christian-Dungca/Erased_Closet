@@ -9,7 +9,7 @@ const productsList = [
         size: 'medium',
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: 'https://unsplash.com/photos/__ng3cRXmFE'
     },
     {
         id: 2,
@@ -20,7 +20,7 @@ const productsList = [
         size: undefined,
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: '../assets/images/big-model-yellow-hat.jpg'
     },
     {
         id: 3,
@@ -31,7 +31,7 @@ const productsList = [
         size: undefined,
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: '../assets/images/big-model-yellow-hat.jpg'
     },
     {
         id: 4,
@@ -42,7 +42,7 @@ const productsList = [
         size: undefined,
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: '../assets/images/big-model-yellow-hat.jpg'
     },
     {
         id: 5,
@@ -53,7 +53,7 @@ const productsList = [
         size: undefined,
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: '../assets/images/big-model-yellow-hat.jpg'
     },
     {
         id: 6,
@@ -64,7 +64,7 @@ const productsList = [
         size: undefined,
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: '../assets/images/big-model-yellow-hat.jpg'
     },
     {
         id: 7,
@@ -75,7 +75,7 @@ const productsList = [
         size: undefined,
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: '../assets/images/big-model-yellow-hat.jpg'
     },
     {
         id: 8,
@@ -86,7 +86,7 @@ const productsList = [
         size: undefined,
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: '../assets/images/big-model-yellow-hat.jpg'
     },
     {
         id: 9,
@@ -97,7 +97,7 @@ const productsList = [
         size: undefined,
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: '../assets/images/big-model-yellow-hat.jpg'
     },
     {
         id: 10,
@@ -108,7 +108,7 @@ const productsList = [
         size: undefined,
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: '../assets/images/big-model-yellow-hat.jpg'
     },
     {
         id: 11,
@@ -119,7 +119,7 @@ const productsList = [
         size: undefined,
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: '../assets/images/big-model-yellow-hat.jpg'
     },
     {
         id: 12,
@@ -130,7 +130,7 @@ const productsList = [
         size: undefined,
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: '../assets/images/big-model-yellow-hat.jpg'
     },
     {
         id: 13,
@@ -141,7 +141,7 @@ const productsList = [
         size: undefined,
         inBag: false,
         images: undefined,
-        imageUrl: '../../assets/images/sm-lady-blue-bg.jpg'
+        imageUrl: '../assets/images/big-model-yellow-hat.jpg'
     },
 ]
 

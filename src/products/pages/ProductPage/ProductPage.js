@@ -1,11 +1,19 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Navigation from "../../../shared/components/Navigation/Navigation";
 import styles from "./ProductPage.module.scss";
 
-const ProductPage = () => {
+const ProductPage = (props) => {
   const history = useHistory();
+  let { id } = useParams();
+
+  const currentProduct = props.products.filter((product) => {
+    return product.id === +id;
+  })[0];
+
+  console.log(currentProduct)
 
   const handleClick = () => {
     history.push("/");
@@ -15,9 +23,19 @@ const ProductPage = () => {
     <div className={styles.ProductPage}>
       <div onClick={handleClick} className={styles.mainImage}></div>
       <div className={styles.nextImage}></div>
-      <div className={styles.detailsContainer}></div>
+      <div className={styles.detailsContainer}>
+        <h2>{currentProduct.name}</h2>
+        <h2>{currentProduct.color}</h2>
+        <h2>{currentProduct.description}</h2>
+      </div>
     </div>
   );
 };
 
-export default ProductPage;
+const mapStateToProps = (state) => {
+  return {
+    products: state.products.products,
+  };
+};
+
+export default connect(mapStateToProps)(ProductPage);

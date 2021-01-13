@@ -1,4 +1,4 @@
-import productsReducer from '../reducers/products';
+// import productsReducer from '../reducers/products';
 import * as actionTypes from './actionTypes';
 
 export const addToCart = (productID) => {
