@@ -4,13 +4,16 @@ import * as actions from "../../../store/actions/index";
 import styles from "./Cart.module.scss";
 
 const Cart = (props) => {
-  console.log(props);
+  const cssClasses = [
+    styles.Cart,
+    props.show === 'entering' ? styles.CartOpen : null 
+  ]
 
   const removeFromCartHandler = (productID) => {
     props.removeFromCart(productID);
   };
   return (
-    <div className={styles.Cart}>
+    <div className={cssClasses.join(' ')}>
       <h1 onClick={props.handleCart}> close </h1>
       <h1> this is the cart component</h1>
       {props.productsInCart.map((product) => {

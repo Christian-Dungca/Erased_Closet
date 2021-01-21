@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Transition } from "react-transition-group";
 
 import Cart from "../../components/Cart/Cart";
 import Backdrop from "../../../shared/components/Backdrop/Backdrop";
@@ -12,23 +13,22 @@ const ProductsPage = (props) => {
   const [productsList, setProductsList] = useState(props.products);
   const [currentProduct, setCurrentProduct] = useState(productsList[0]);
 
-  console.log(productsList);
-  console.log(currentProduct);
-
   useEffect(() => {
-    const onInit = async () => {
-      const fetchProducts = await props.onFetchProducts();
-      setProductsList(props.products);
-      return; 
-    };
-    onInit();
-  }, []);
+    props.onFetchProducts();
+  }, [])
 
   return (
     <div>
       {props.isCartOpen && (
         <>
-          <Cart handleCart={props.handleCart} />
+          <Transition
+            in={props.isCartOpen}
+            timeout={300}
+            mountOnEnter
+            unmountOnExit
+          >
+            {(state) => <Cart handleCart={props.handleCart} show={state} />}
+          </Transition>
           <Backdrop onclick={props.handleCart} />
         </>
       )}
@@ -41,7 +41,10 @@ const ProductsPage = (props) => {
           </div>
         </div>
         <div className={styles.rightContainer}>
-          <Link to={`/product/${currentProduct.id}`} className={styles.linkContainer}>
+          <Link
+            to={`/product/${currentProduct.id}`}
+            className={styles.linkContainer}
+          >
             <div className={styles.imageContainer}>
               {/* <img src={`${currentProduct.imageUrl}`}></img> */}
             </div>

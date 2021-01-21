@@ -9,7 +9,8 @@ const initialState = {
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PRODUCTS:
-      return state;
+      console.log(action.result)
+      return action.result;
     default:
       return state;
   }

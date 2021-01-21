@@ -1,9 +1,24 @@
 .Cart {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 40%;
-    height: 100%;
-    background-color: white;
-    z-index: 200;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background-color: white;
+  z-index: 200;
+  transition: all 1s ease-out;
+
+}
+
+.CartOpen {
+  animation: openModal 1s;
+}
+
+@keyframes openModal {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
