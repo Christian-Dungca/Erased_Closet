@@ -14,6 +14,8 @@ import bagReducer from "./components/reactReducers/bagReducer";
 import ProductsPage from "./products/pages/ProductsPage/ProductsPage";
 import Navigation from "./shared/components/Navigation/Navigation";
 import ProductPage from "./products/pages/ProductPage/ProductPage";
+import NewProductPage from "./products/pages/NewProductPage/NewProduct";
+
 
 const BagContext = createContext(null);
 const ProductContext = createContext(null);
@@ -56,6 +58,9 @@ const App = () => {
           <Switch>
             <Route path="/" exact>
               <ProductsPage handleCart={handleCart} isCartOpen={isCartOpen} />
+            </Route>
+            <Route path="/add-product" exact>
+              <NewProductPage />
             </Route>
             <Route path="/product/:id">
               <ProductPage products={products} />
