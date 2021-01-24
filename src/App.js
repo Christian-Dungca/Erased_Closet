@@ -62,6 +62,9 @@ const App = () => {
             <Route path="/add-product" exact>
               <NewProductPage />
             </Route>
+            {/* <Route path="/update-product/:id" exact>
+              <NewProductPage />
+            </Route> */}
             <Route path="/product/:id">
               <ProductPage products={products} />
             </Route>
