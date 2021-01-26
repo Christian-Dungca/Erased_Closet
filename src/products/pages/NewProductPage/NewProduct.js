@@ -6,34 +6,11 @@ import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
 } from "../../../shared/components/util/validators";
-
-const formReducer = (state, action) => {
-  switch (action.type) {
-    case "INPUT_CHANGE":
-      let formIsValid = true;
-      for (const inputId in state.inputs) {
-        if (inputId === action.inputId) {
-          formIsValid = formIsValid && action.isValid;
-        } else {
-          formIsValid = formIsValid && state.inputs[inputId].isValid;
-        }
-      }
-      return {
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.inputId]: { value: action.value, isValid: action.isValid },
-        },
-        isValid: formIsValid,
-      };
-    default:
-      return state;
-  }
-};
+import { useForm } from "../../../shared/hooks/form-hook";
 
 const NewProduct = () => {
-  const [formState, dispatch] = useReducer(formReducer, {
-    inputs: {
+  const [formState, inputHandler] = useForm(
+    {
       name: {
         value: "",
         isValid: false,
@@ -59,8 +36,8 @@ const NewProduct = () => {
         isValid: false,
       },
     },
-    isValid: false,
-  });
+    false
+  );
 
   // SEND A POST REQUEST USING AXIOS
   // Aync Await
@@ -68,29 +45,19 @@ const NewProduct = () => {
   const productSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/products", {
-        name: formState.inputs.name.value,
-        type: formState.inputs.type.value,
-        price: formState.inputs.price.value,
-        details: formState.inputs.details.value,
-        color: formState.inputs.color.value,
-        size: formState.inputs.size.value
-      });
+      // await axios.post("http://localhost:5000/api/products", {
+      //   name: formState.inputs.name.value,
+      //   type: formState.inputs.type.value,
+      //   price: formState.inputs.price.value,
+      //   details: formState.inputs.details.value,
+      //   color: formState.inputs.color.value,
+      //   size: formState.inputs.size.value,
+      // });
+      console.table(formState.inputs)
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   };
-
-  const inputHandler = useCallback((id, value, isValid) => {
-    console.log("using input handler");
-    console.log(`id: ${id} -- value: ${value} isValid: ${isValid}`);
-    dispatch({
-      type: "INPUT_CHANGE",
-      value: value,
-      isValid: isValid,
-      inputId: id,
-    });
-  }, []);
 
   return (
     <div>

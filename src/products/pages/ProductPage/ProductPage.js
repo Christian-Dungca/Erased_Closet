@@ -5,11 +5,13 @@ import { connect } from "react-redux";
 import Navigation from "../../../shared/components/Navigation/Navigation";
 import styles from "./ProductPage.module.scss";
 
-const ProductPage = (props) => {
+const ProductPage = ({products}) => {
   const history = useHistory();
   let { id } = useParams();
 
-  const currentProduct = props.products.filter((product) => {
+  console.log('products', products)
+
+  const currentProduct = products.filter((product) => {
     return product.id === +id;
   })[0];
 
@@ -34,7 +36,7 @@ const ProductPage = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products.products,
+    products: state.products.products
   };
 };
 

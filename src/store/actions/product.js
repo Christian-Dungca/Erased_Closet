@@ -10,12 +10,15 @@ export const saveProducts = (res) => {
 
 export const fetchProducts = () => {
   return (dispatch) => {
-    axios.get("http://localhost:5000/api/products")
-        .then((res) => {
-            dispatch(saveProducts(res.data));
-        } )
-        .catch(err => [
-            console.log('[ERROR] Can not fetch products')
-        ])
+    axios
+      .get("http://localhost:5000/api/products")
+      .then((res) => {
+        console.log('res', res.data.products);
+        dispatch(saveProducts(res.data.products));
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("[ERROR] Can not fetch products");
+      });
   };
 };

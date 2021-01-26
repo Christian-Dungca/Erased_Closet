@@ -10,8 +10,8 @@ import * as actions from "../../../store/actions/index";
 import styles from "./ProductsPag.module.scss";
 
 const ProductsPage = (props) => {
-  const [productsList, setProductsList] = useState(props.products);
-  const [currentProduct, setCurrentProduct] = useState(productsList[0]);
+  const [productsList, setProductsList] = useState(null);
+  const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {
     props.onFetchProducts();
@@ -42,7 +42,8 @@ const ProductsPage = (props) => {
         </div>
         <div className={styles.rightContainer}>
           <Link
-            to={`/product/${currentProduct.id}`}
+            // to={`/product/${currentProduct.id}`}
+            to={`/product/60074469f356fc228cf64ef4`}
             className={styles.linkContainer}
           >
             <div className={styles.imageContainer}>
