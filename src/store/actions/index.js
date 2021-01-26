@@ -3,5 +3,6 @@ export {
     removeFromCart
 } from './cart';
 export {
-    fetchProducts
+    fetchProducts,
+    fetchProduct
 } from './product';

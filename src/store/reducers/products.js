@@ -3,14 +3,17 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   products: null,
-  filteredProducts: null,
+  product: null,
 };
 
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PRODUCTS:
-      console.log(action.result);
+      // console.log(action.result);
       return { ...state, products: action.result };
+    case actionTypes.FETCH_PRODUCT:
+      // console.table(action.result)
+      return { ...state, product: action.result };
     default:
       return state;
   }

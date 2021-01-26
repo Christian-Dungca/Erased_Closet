@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
+import * as actions from "../../../store/actions/index";
 import Navigation from "../../../shared/components/Navigation/Navigation";
 import styles from "./ProductPage.module.scss";
+import { act } from "react-dom/test-utils";
 
-const ProductPage = ({products}) => {
+const ProductPage = ({ product, fetchProduct }) => {
+  const [currentProduct, setCurrentProduct] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   let { id } = useParams();
+  // console.log(typeof id)
 
-  console.log('products', products)
-
-  const currentProduct = products.filter((product) => {
-    return product.id === +id;
-  })[0];
-
-  console.log(currentProduct)
+  useEffect(() => {
+    const getProduct = async () => {
+      setIsLoading(true);
+      try {
+        await fetchProduct(id);
+        console.log(product);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProduct();
+    setCurrentProduct(product);
+    setIsLoading(false);
+  }, []);
 
   const handleClick = () => {
     history.push("/");
@@ -25,19 +37,27 @@ const ProductPage = ({products}) => {
     <div className={styles.ProductPage}>
       <div onClick={handleClick} className={styles.mainImage}></div>
       <div className={styles.nextImage}></div>
-      <div className={styles.detailsContainer}>
-        <h2>{currentProduct.name}</h2>
-        <h2>{currentProduct.color}</h2>
-        <h2>{currentProduct.description}</h2>
-      </div>
+      {product && (
+        <div className={styles.detailsContainer}>
+          <h2>{product.name}</h2>
+          <h2>{product.color}</h2>
+          <h2>{product.details}</h2>
+        </div>
+      )}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products.products
+    product: state.products.product,
   };
 };
 
-export default connect(mapStateToProps)(ProductPage);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchProduct: (pId) => dispatch(actions.fetchProduct(pId)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);
