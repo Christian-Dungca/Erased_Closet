@@ -11,15 +11,20 @@ const Admin = ({ products, fetchProducts }) => {
     <>
       <Navigation />
       <div className={styles.Admin}>
-        <h1> All Products (Admin) </h1>
+        <h1> Product Inventory (Admin) </h1>
+        <div className={styles.createProductWrapper}>
+          <div className={styles.createProductBtn}>
+            <h2 className={styles.btnText}> Create </h2>
+            <h2 className={styles.btnPlusSymbol}> &#43; </h2>
+          </div>
+        </div>
         <div className={styles.productTable}>
           {/* <ul className={styles.productRowHeader}> */}
-            <li className={styles.header}>name</li>
-            <li className={styles.header}>price</li>
-            <li className={styles.header}>type</li>
-            <li className={styles.header}>color</li>
-            <li className={styles.header}>size</li>
-            <li className={styles.header}>actions</li>
+          <li className={styles.header}>product</li>
+          <li className={styles.header}>type</li>
+          <li className={styles.header}>color</li>
+          <li className={styles.header}>price</li>
+          <li className={styles.header}>actions</li>
           {/* </ul> */}
 
           {products && <ProductList products={products} />}

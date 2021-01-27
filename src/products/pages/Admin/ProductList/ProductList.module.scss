@@ -1,0 +1,52 @@
+.productRow {
+  grid-column: 1 / -1;
+  border: 2px solid rgb(255, 140, 140);
+  padding: 1rem;
+  display: flex;
+
+  ul {
+    list-style: none;
+  }
+
+  .mainList {
+    width: 100%;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
+    display: grid;
+    grid-template-columns: [name] 1fr [type] 1fr [color] 1fr [price] 1fr [actions] 1fr;
+    justify-items: center;
+    align-items: center;
+
+    
+    .productName {
+      grid-column: name / type;
+
+      .name {
+        font-weight: 600;
+        line-height: 140%;
+      }
+
+      .size {
+      }
+    }
+
+    .type {
+      grid-column: type / color;
+      text-transform: lowercase;
+    }
+    
+    .color {
+        grid-column: color / price;
+        text-transform: lowercase;
+    }
+
+    .price {
+      grid-column: price / actions;
+    }
+
+    .actions {
+      grid-column: actions;
+    }
+  }
+}

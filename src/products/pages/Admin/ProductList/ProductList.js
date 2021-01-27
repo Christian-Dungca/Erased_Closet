@@ -1,5 +1,4 @@
 import React from "react";
-import {Link} from "react-router-dom";
 
 import styles from "./ProductList.module.scss";
 
@@ -9,16 +8,18 @@ const ProductList = ({ products }) => {
     <>
       {products.map((product) => {
         return (
-          <React.Fragment key={product._id}>
-            <li> {product.name} </li>
-            <li> {product.price} </li>
-            <li> {product.type} </li>
-            <li> {product.color} </li>
-            <li> {product.size} </li>
-            <li>
-              <Link to={`/product/${product._id}`}> edit</Link> delete
-            </li>
-          </React.Fragment>
+          <div key={product._id} className={styles.productRow}>
+            <ul className={styles.mainList}>
+              <ul className={styles.productName}>
+                <li className={styles.name}> {product.name} </li>
+                <li className={styles.size}> size: {product.size} </li>
+              </ul>
+              <li className={styles.type} > {product.type} </li>
+              <li className={styles.color}> {product.color} </li>
+              <li className={styles.price}> ${product.price} </li>
+              <li className={styles.actions}>edit delete</li>
+            </ul>
+          </div>
         );
       })}
     </>
