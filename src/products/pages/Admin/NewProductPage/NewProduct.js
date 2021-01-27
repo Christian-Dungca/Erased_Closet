@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useCallback, useReducer } from "react";
 
-import Input from "../../../shared/components/FormElements/Input";
+import Input from "../../../../shared/components/FormElements/Input";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
-} from "../../../shared/components/util/validators";
-import { useForm } from "../../../shared/hooks/form-hook";
+} from "../../../../shared/components/util/validators";
+import { useForm } from "../../../../shared/hooks/form-hook";
 
 const NewProduct = () => {
   const [formState, inputHandler] = useForm(
@@ -53,7 +53,7 @@ const NewProduct = () => {
       //   color: formState.inputs.color.value,
       //   size: formState.inputs.size.value,
       // });
-      console.table(formState.inputs)
+      console.table    (formState.inputs)
     } catch (err) {
       console.log(err);
     }

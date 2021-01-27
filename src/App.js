@@ -7,7 +7,7 @@ import ProductsPage from "./products/pages/ProductsPage/ProductsPage";
 import Navigation from "./shared/components/Navigation/Navigation";
 import ProductPage from "./products/pages/ProductPage/ProductPage";
 import AdminPage from "./products/pages/Admin/Admin";
-import NewProductPage from "./products/pages/NewProductPage/NewProduct";
+// import NewProductPage from "./products/pages/NewProductPage/NewProduct";
 import * as actions from "./store/actions/index";
 import styles from "./App.module.scss";
 
@@ -37,9 +37,9 @@ const App = ({fetchProducts}) => {
         <Route path="/" exact>
           <ProductsPage handleCart={handleCart} isCartOpen={isCartOpen} />
         </Route>
-        <Route path="/add-product" exact>
+        {/* <Route path="/add-product" exact>
           <NewProductPage />
-        </Route>
+        </Route> */}
         <Route path="/admin" exact>
           <AdminPage />
         </Route>

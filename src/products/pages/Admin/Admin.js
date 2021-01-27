@@ -1,30 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import Navigation from "../../../shared/components/Navigation/Navigation";
 import ProductList from "./ProductList/ProductList";
+import BackDrop from "../../../shared/components/Backdrop/Backdrop";
 import * as actions from "../../../store/actions/index";
 import styles from "./Admin.module.scss";
+import Backdrop from "../../../shared/components/Backdrop/Backdrop";
 
 const Admin = ({ products, fetchProducts }) => {
+  const [newProductForm, setNewProductForm] = useState(false);
+
+  const createProductHandler = () => {
+    setNewProductForm(!newProductForm);
+  };
+
   return (
     <>
       <Navigation />
+      {newProductForm && <Backdrop onclick={createProductHandler} />}
       <div className={styles.Admin}>
-        <h1> Product Inventory (Admin) </h1>
-        <div className={styles.createProductWrapper}>
-          <div className={styles.createProductBtn}>
-            <h2 className={styles.btnText}> Create </h2>
-            <h2 className={styles.btnPlusSymbol}> &#43; </h2>
+        <div className={styles.header}>
+          <h1> Product Inventory (Admin) </h1>
+          <div className={styles.createProductWrapper}>
+            {/* <h2 className={styles.productsText}> Products </h2> */}
+            <div className={styles.createProductBtn} onClick={createProductHandler}>
+              <h2 className={styles.btnText}> Create </h2>
+              <h2 className={styles.btnPlusSymbol}> &#43; </h2>
+            </div>
           </div>
         </div>
         <div className={styles.productTable}>
           {/* <ul className={styles.productRowHeader}> */}
-          <li className={styles.header}>product</li>
-          <li className={styles.header}>type</li>
-          <li className={styles.header}>color</li>
-          <li className={styles.header}>price</li>
-          <li className={styles.header}>actions</li>
+          <li className={styles.productHeader}>product</li>
+          <li className={styles.productHeader}>type</li>
+          <li className={styles.productHeader}>color</li>
+          <li className={styles.productHeader}>price</li>
+          <li className={styles.productHeader}>actions</li>
           {/* </ul> */}
 
           {products && <ProductList products={products} />}
