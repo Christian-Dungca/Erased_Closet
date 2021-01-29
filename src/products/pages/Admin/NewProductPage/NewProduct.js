@@ -1,14 +1,17 @@
-import axios from "axios";
 import React, { useCallback, useReducer } from "react";
+import { connect } from "react-redux";
+import axios from "axios";
 
+import * as actions from "../../../../store/actions/index";
 import Input from "../../../../shared/components/FormElements/Input";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
 } from "../../../../shared/components/util/validators";
 import { useForm } from "../../../../shared/hooks/form-hook";
+import styles from "./NewProduct.module.scss";
 
-const NewProduct = () => {
+const NewProduct = ({ addProduct, closeFormHandler }) => {
   const [formState, inputHandler] = useForm(
     {
       name: {
@@ -39,37 +42,39 @@ const NewProduct = () => {
     false
   );
 
-  // SEND A POST REQUEST USING AXIOS
-  // Aync Await
-  // https://api/products
   const productSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      // await axios.post("http://localhost:5000/api/products", {
-      //   name: formState.inputs.name.value,
-      //   type: formState.inputs.type.value,
-      //   price: formState.inputs.price.value,
-      //   details: formState.inputs.details.value,
-      //   color: formState.inputs.color.value,
-      //   size: formState.inputs.size.value,
-      // });
-      console.table    (formState.inputs)
+      await addProduct(formState.inputs);
+      closeFormHandler();
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div>
-      <h1> Form for New Product </h1>
+    <div className={styles.NewProduct}>
+      <div className={styles.header}>
+        <h1> Create a Product </h1>
+        <h1> Close </h1>
+      </div>
       <form onSubmit={productSubmitHandler}>
+        <div className={styles.photoUploadSection}>
+          <div className={styles.photoPlaceholder}>
+            <h2> + </h2>
+          </div>
+          <div className={styles.photoTextSection}>
+            <h2> Upload product photo</h2>
+            <button className={styles.uploadBtn}> Upload </button>
+          </div>
+        </div>
         <Input
           element="input"
           id="name"
           type="text"
-          label="name"
+          label="Product Name"
           errorText="Please enter valid name"
-          placeholder="name"
+          placeholder="Name is required"
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(4)]}
           onInput={inputHandler}
         />
@@ -77,9 +82,9 @@ const NewProduct = () => {
           element="input"
           id="type"
           type="text"
-          label="type"
+          label="Type"
           errorText="Please enter valid type"
-          placeholder="type"
+          placeholder="Type is required"
           validators={[VALIDATOR_REQUIRE()]}
           onInput={inputHandler}
         />
@@ -87,9 +92,9 @@ const NewProduct = () => {
           element="input"
           id="price"
           type="text"
-          label="price"
+          label="Price"
           errorText="Please enter valid price"
-          placeholder="price"
+          placeholder="Price must be in usd"
           validators={[VALIDATOR_REQUIRE()]}
           onInput={inputHandler}
         />
@@ -97,9 +102,9 @@ const NewProduct = () => {
           element="input"
           id="details"
           type="text"
-          label="details"
+          label="Details"
           errorText="Please enter valid details"
-          placeholder="details"
+          placeholder="Maximum of 20 characters"
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(4)]}
           onInput={inputHandler}
         />
@@ -107,9 +112,9 @@ const NewProduct = () => {
           element="input"
           id="color"
           type="text"
-          label="color"
+          label="Color"
           errorText="Please enter valid color"
-          placeholder="color"
+          placeholder="Color is required"
           validators={[VALIDATOR_REQUIRE()]}
           onInput={inputHandler}
         />
@@ -119,16 +124,28 @@ const NewProduct = () => {
           type="text"
           label="size"
           errorText="Please enter valid size"
-          placeholder="size"
+          placeholder="Size is required"
           validators={[VALIDATOR_REQUIRE()]}
           onInput={inputHandler}
         />
-        <button type="submit" disabled={!formState.isValid}>
-          Submit
+
+        {/* disabled={!formState.isValid */}
+        <button
+          type="submit"
+          disabled={!formState.isValid}
+          className={styles.button}
+        >
+          Add Product
         </button>
       </form>
     </div>
   );
 };
 
-export default NewProduct;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addProduct: (inputs) => dispatch(actions.createProduct(inputs)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(NewProduct);

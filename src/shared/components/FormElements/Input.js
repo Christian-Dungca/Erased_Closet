@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer } from "react";
 
 import { validate } from "../../../shared/components/util/validators";
+import styles from "./Input.module.scss";
 
 const inputReducer = (state, action) => {
   switch (action.type) {
@@ -24,11 +25,11 @@ const Input = (props) => {
     isTouched: false,
   });
 
-  const {id , onInput} = props;
-  const {value, isValid} = inputState
+  const { id, onInput } = props;
+  const { value, isValid } = inputState;
 
   useEffect(() => {
-    console.log(value)
+    console.log(value);
     onInput(props.id, inputState.value, inputState.isValid);
   }, [id, value, isValid, onInput]);
 
@@ -51,11 +52,12 @@ const Input = (props) => {
       <input
         id={props.id}
         type={props.type}
-        placeholder={props.placeholder}
+        // placeholder={props.placeholder}
         onChange={changeHandler}
         value={inputState.value}
         onBlur={touchHandler}
-      />
+        className={styles.Input}
+      ></input>
     ) : (
       <textarea
         id={props.id}
@@ -66,13 +68,15 @@ const Input = (props) => {
     );
 
   return (
-    <div>
-      <label htmlFor={props.id}></label>
-      {element}
-      {!inputState.isValid && inputState.isTouched && (
+    <>
+      <div className={styles.inputContainer}>
+        {element}
+        <label htmlFor={props.id}>{props.label}</label>
+      </div>
+      {/* {!inputState.isValid && inputState.isTouched && (
         <p> {props.errorText} </p>
-      )}
-    </div>
+      )} */}
+    </>
   );
 };
 

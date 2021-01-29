@@ -44,3 +44,53 @@ export const fetchProduct = (pId) => {
       });
   };
 };
+
+export const addProduct = (res) => {
+  return {
+    type: actionTypes.ADD_PRODUCT,
+    result: res,
+  };
+};
+
+export const createProduct = (inputs) => {
+  return (dispatch) => {
+    axios
+      .post("http://localhost:5000/api/products", {
+        name: inputs.name.value,
+        type: inputs.type.value,
+        price: inputs.price.value,
+        details: inputs.details.value,
+        color: inputs.color.value,
+        size: inputs.size.value,
+      })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(addProduct(res.data.product));
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("[ERROR] Can not add product");
+      });
+  };
+};
+
+export const deleteProductById = (res) => {
+  return {
+    type: actionTypes.DELETE_PRODUCT,
+    result: res,
+  };
+};
+
+export const deleteProduct = (pId) => {
+  return (dispatch) => {
+    axios
+      .delete(`http://localhost:5000/api/products/${pId}`)
+      .then((res) => {
+        dispatch(deleteProductById(res.data.deletedProduct));
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("[ERROR] Can not delete product");
+      });
+  };
+};

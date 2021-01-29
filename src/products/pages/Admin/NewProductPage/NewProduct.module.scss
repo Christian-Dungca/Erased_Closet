@@ -1,0 +1,82 @@
+.NewProduct {
+  font-family: var(--font-montserrat);
+  background-color: white;
+  width: 95%;
+  height: 90%;
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: [gutter-left] 4rem [content-start] 1fr [content-end] 4rem [gutter-right];
+  grid-template-rows: 4rem [header] 8rem [form] 1fr 4rem;
+
+  .header {
+    grid-column: content-start / content-end;
+    grid-row: header / form;
+    background-color: rgb(56, 56, 56);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  form {
+    grid-column: content-start / content-end;
+    grid-row: form / span 1;
+    background-color: rgb(63, 82, 63);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+
+    .photoUploadSection {
+      width: 100%;
+      height: 100%;
+      // background-color: rgb(207, 207, 95);
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      .photoPlaceholder {
+        width: 30%;
+        height: 80%;
+        background-color: rgb(206, 206, 206);
+        border: 1px dashed black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        h2 {
+          font-size: 10rem;
+          // background-color: yellow;
+        }
+      }
+      .photoTextSection {
+        width: 50%;
+        height: 80%;
+        // background-color: rgb(134, 24, 24);
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+
+        h2 {
+        }
+
+        .uploadBtn {
+          margin-top: 2rem;
+          padding: 1rem 4rem;
+          border-radius: 1rem;
+          border: 1px solid rgb(0, 0, 0);;
+        }
+      }
+    }
+
+    .button {
+      align-self: end;
+      width: 20rem;
+      height: 4rem;
+    }
+  }
+}

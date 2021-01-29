@@ -1,9 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
 
+import * as actions from '../../../../store/actions/index';
 import styles from "./ProductList.module.scss";
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, deleteProduct }) => {
   console.log(products);
+
+  const removeProductHandler = (pId) => {
+    deleteProduct(pId)
+  }
+
   return (
     <>
       {products.map((product) => {
@@ -19,6 +26,7 @@ const ProductList = ({ products }) => {
               <li className={styles.price}> ${product.price} </li>
               <li className={styles.actions}>
                 <svg
+                  onClick={() => removeProductHandler(`${product._id}`)}
                   height="512pt"
                   viewBox="-47 0 512 512"
                   width="512pt"
@@ -49,7 +57,13 @@ const ProductList = ({ products }) => {
   );
 };
 
-export default ProductList;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteProduct: (pId) => dispatch(actions.deleteProduct(pId))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ProductList);
 
 /* 
 name,

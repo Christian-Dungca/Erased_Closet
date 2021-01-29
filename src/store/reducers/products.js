@@ -9,11 +9,17 @@ const initialState = {
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PRODUCTS:
-      // console.log(action.result);
       return { ...state, products: action.result };
     case actionTypes.FETCH_PRODUCT:
-      // console.table(action.result)
       return { ...state, product: action.result };
+    case actionTypes.DELETE_PRODUCT:
+      const updatedProductsList = state.products.filter((product) => {
+        return product._id !== action.result._id;
+      });
+      return { ...state, products: updatedProductsList };
+    case actionTypes.ADD_PRODUCT:
+      const newProduct = action.result;
+      return { ...state, newProduct };
     default:
       return state;
   }

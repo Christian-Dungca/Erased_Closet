@@ -4,5 +4,9 @@ export {
 } from './cart';
 export {
     fetchProducts,
-    fetchProduct
+    fetchProduct,
+    deleteProduct,
+    deleteProductById,
+    addProduct,
+    createProduct
 } from './product';
