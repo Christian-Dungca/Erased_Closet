@@ -32,10 +32,11 @@
         p {
             margin-top: 2rem;
 
-            span {
+            a {
                 color: blue;
                 cursor: pointer;
                 padding: .2rem;
+                text-decoration: none;
             }
         }
     }

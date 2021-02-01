@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import {
   VALIDATOR_EMAIL,
@@ -32,7 +33,10 @@ const SignUpPage = () => {
     <div className={styles.SignUpPage}>
       <div className={styles.formContainer}>
         <h1 className={styles.formTitle}> Create Account</h1>
-        <p className={styles.formDescription}> sign up to be able to add items to cart and puchase items</p>
+        <p className={styles.formDescription}>
+          {" "}
+          sign up to be able to add items to cart and puchase items
+        </p>
         <form>
           <div className={styles.nameInput}>
             <Input
@@ -73,7 +77,9 @@ const SignUpPage = () => {
           <button className={styles.formBtn}> Sign Up</button>
         </form>
         <div className={styles.switchToLogin}>
-          <p> or <span>login</span> </p>
+          <p>
+            or <Link to="/login">login</Link>
+          </p>
         </div>
       </div>
       <div className={styles.imageContainer}></div>

@@ -1,0 +1,83 @@
+.LoginPage {
+    font-family: var(--font-montserrat);
+    width: 100vw;
+    height: 100vh;
+    //   background-color: yellow;
+    display: grid;
+    grid-template-columns: [form-start] 7fr [form-end image-start] 5fr [image-end];
+  
+    .formContainer {
+      padding: 10rem 15%;
+      grid-column: form-start / form-end;
+      // background-color: lightskyblue;
+  
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  
+      .formTitle {
+        font-size: 5rem;
+        margin-bottom: 3rem;
+      }
+  
+      .formDescription {
+        font-size: 1.8rem;
+        margin-bottom: 3rem;
+        text-align: center;
+        line-height: 140%;
+      }
+  
+      .switchToSignUp {
+          p {
+              margin-top: 2rem;
+  
+              a {
+                  color: blue;
+                  cursor: pointer;
+                  padding: .2rem;
+                  text-decoration: none;
+              }
+          }
+      }
+    }
+  
+    .imageContainer {
+      grid-column: image-start / -1;
+      background-color: lightsalmon;
+      background: url(../../assets/images/sm-yellow-flower-bg.jpg);
+      background-size: cover;
+    }
+  }
+  
+  form {
+    width: 100%;
+  //   background-color: lightyellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    & > div {
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+  
+    .nameInput {
+    }
+  
+    .emailInput {
+    }
+  
+    .passwordInput {
+    }
+  
+    .formBtn {
+        font-size: 2rem;
+        padding: 1.5rem 5rem;
+        border-radius: 5px;
+        border: 1px solid black;
+    }
+  }
+  
+  
+  
