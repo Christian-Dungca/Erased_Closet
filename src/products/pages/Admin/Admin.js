@@ -9,7 +9,7 @@ import * as actions from "../../../store/actions/index";
 import styles from "./Admin.module.scss";
 
 const Admin = ({ products, fetchProducts }) => {
-  const [newProductForm, setNewProductForm] = useState(false);
+  const [newProductForm, setNewProductForm] = useState(false); // false
   const [productList, setProductList] = useState(products);
 
   useEffect(() => {

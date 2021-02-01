@@ -47,6 +47,8 @@ const Input = (props) => {
     });
   };
 
+  const classNames = inputState.isValid ? [styles.Input, styles.validInput] : [styles.Input];
+
   const element =
     props.element === "input" ? (
       <input

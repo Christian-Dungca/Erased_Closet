@@ -55,87 +55,91 @@ const NewProduct = ({ addProduct, closeFormHandler }) => {
   return (
     <div className={styles.NewProduct}>
       <div className={styles.header}>
-        <h1> Create a Product </h1>
-        <h1> Close </h1>
+        <h2 className={styles.headerTitle}> New Product Form </h2>
       </div>
+      <p className={styles.formDescription}>
+        Create a new product to add to the store.
+      </p>
       <form onSubmit={productSubmitHandler}>
-        <div className={styles.photoUploadSection}>
-          <div className={styles.photoPlaceholder}>
-            <h2> + </h2>
-          </div>
-          <div className={styles.photoTextSection}>
-            <h2> Upload product photo</h2>
-            <button className={styles.uploadBtn}> Upload </button>
-          </div>
+        <div className={styles.name}>
+          <Input
+            element="input"
+            id="name"
+            type="text"
+            label="Product Name"
+            errorText="Please enter valid name"
+            placeholder="Name is required"
+            validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(4)]}
+            onInput={inputHandler}
+          />
         </div>
-        <Input
-          element="input"
-          id="name"
-          type="text"
-          label="Product Name"
-          errorText="Please enter valid name"
-          placeholder="Name is required"
-          validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(4)]}
-          onInput={inputHandler}
-        />
-        <Input
-          element="input"
-          id="type"
-          type="text"
-          label="Type"
-          errorText="Please enter valid type"
-          placeholder="Type is required"
-          validators={[VALIDATOR_REQUIRE()]}
-          onInput={inputHandler}
-        />
-        <Input
-          element="input"
-          id="price"
-          type="text"
-          label="Price"
-          errorText="Please enter valid price"
-          placeholder="Price must be in usd"
-          validators={[VALIDATOR_REQUIRE()]}
-          onInput={inputHandler}
-        />
-        <Input
-          element="input"
-          id="details"
-          type="text"
-          label="Details"
-          errorText="Please enter valid details"
-          placeholder="Maximum of 20 characters"
-          validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(4)]}
-          onInput={inputHandler}
-        />
-        <Input
-          element="input"
-          id="color"
-          type="text"
-          label="Color"
-          errorText="Please enter valid color"
-          placeholder="Color is required"
-          validators={[VALIDATOR_REQUIRE()]}
-          onInput={inputHandler}
-        />
-        <Input
-          element="input"
-          id="size"
-          type="text"
-          label="size"
-          errorText="Please enter valid size"
-          placeholder="Size is required"
-          validators={[VALIDATOR_REQUIRE()]}
-          onInput={inputHandler}
-        />
-
+        <div className={styles.type}>
+          <Input
+            element="input"
+            id="type"
+            type="text"
+            label="Type"
+            errorText="Please enter valid type"
+            placeholder="Type is required"
+            validators={[VALIDATOR_REQUIRE()]}
+            onInput={inputHandler}
+          />
+        </div>
+        <div className={styles.price}>
+          <Input
+            element="input"
+            id="price"
+            type="text"
+            label="Price"
+            errorText="Please enter valid price"
+            placeholder="Price must be in usd"
+            validators={[VALIDATOR_REQUIRE()]}
+            onInput={inputHandler}
+          />
+        </div>
+        <div className={styles.details}>
+          <Input
+            element="input"
+            id="details"
+            type="text"
+            label="Details"
+            errorText="Please enter valid details"
+            placeholder="Maximum of 20 characters"
+            validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(4)]}
+            onInput={inputHandler}
+          />
+        </div>
+        <div className={styles.color}>
+          <Input
+            element="input"
+            id="color"
+            type="text"
+            label="Color"
+            errorText="Please enter valid color"
+            placeholder="Color is required"
+            validators={[VALIDATOR_REQUIRE()]}
+            onInput={inputHandler}
+          />
+        </div>
+        <div className={styles.size}>
+          <Input
+            element="input"
+            id="size"
+            type="text"
+            label="size"
+            errorText="Please enter valid size"
+            placeholder="Size is required"
+            validators={[VALIDATOR_REQUIRE()]}
+            onInput={inputHandler}
+          />
+        </div>
         {/* disabled={!formState.isValid */}
         <button
           type="submit"
           disabled={!formState.isValid}
           className={styles.button}
         >
-          Add Product
+          Add
         </button>
       </form>
     </div>
