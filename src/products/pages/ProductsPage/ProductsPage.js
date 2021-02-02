@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Transition } from "react-transition-group";
@@ -10,12 +10,8 @@ import * as actions from "../../../store/actions/index";
 import styles from "./ProductsPag.module.scss";
 
 const ProductsPage = (props) => {
-  const [productsList, setProductsList] = useState(null);
+  const [productsList, setProductsList] = useState(props.products);
   const [currentProduct, setCurrentProduct] = useState(null);
-
-  useEffect(() => {
-    props.onFetchProducts();
-  }, [])
 
   return (
     <div>

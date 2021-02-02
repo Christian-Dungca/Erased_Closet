@@ -1,6 +1,5 @@
-import React, { useCallback, useReducer } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import axios from "axios";
 
 import * as actions from "../../../../store/actions/index";
 import Input from "../../../../shared/components/FormElements/Input";

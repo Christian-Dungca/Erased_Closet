@@ -11,12 +11,14 @@ const Navigation = (props) => {
       {logoShow && (
         <div className={styles.logoContainer}>
           <Link className={styles.logo} to="/">
-            <h1 > Erased Closet</h1>
+            <h1> Erased Closet</h1>
           </Link>
         </div>
       )}
       <ul className={styles.Links}>
-        <li> Login </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
         <li> Search </li>
         <li onClick={props.handleCart}> Cart </li>
       </ul>
