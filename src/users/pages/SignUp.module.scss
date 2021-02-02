@@ -47,6 +47,7 @@
     background-color: lightsalmon;
     background: url(../../assets/images/med-shadow-yellow-bg.jpg);
     background-size: cover;
+    border-radius: 1rem;
   }
 }
 
@@ -58,7 +59,7 @@ form {
   align-items: center;
 
   & > div {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     width: 100%;
   }
 
@@ -74,8 +75,10 @@ form {
   .formBtn {
       font-size: 2rem;
       padding: 1.5rem 5rem;
+      width: 100%;
       border-radius: 5px;
       border: 1px solid black;
+      
   }
 }
 

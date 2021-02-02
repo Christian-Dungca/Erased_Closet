@@ -5,43 +5,64 @@ import Navigation from "../../../shared/components/Navigation/Navigation";
 import ProductList from "./ProductList/ProductList";
 import NewProduct from "./NewProductPage/NewProduct";
 import Backdrop from "../../../shared/components/Backdrop/Backdrop";
+import Modal from "../../../shared/components/Modal/Modal";
 import * as actions from "../../../store/actions/index";
 import styles from "./Admin.module.scss";
 
-const Admin = ({ products, fetchProducts }) => {
-  const [newProductForm, setNewProductForm] = useState(false); // false
-  const [productList, setProductList] = useState(products);
+const Admin = ({ products, fetchProducts, deleteProduct }) => {
+  const [newProductForm, setNewProductForm] = useState(false); 
+  const [showWarning, setShowWarning] = useState(false);
+  const [productId, setProductId] = useState(null);
 
-  useEffect(() => {
-    const fetchAllProducts = async () => {
-      try {
-        await fetchProducts();
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    setProductList(products);
-    console.log("productList", productList);
-  }, []);
-
-  const createProductHandler = () => {
-    console.log("inside createProductHandler");
+  const showProductFormHandler = () => {
     setNewProductForm(!newProductForm);
   };
+
+  const showWarningHandler = (prodId) => {
+    setProductId(prodId);
+    setShowWarning((showWarning) => !showWarning);
+  };
+
+  const removeProductHandler = (productId) => {
+    deleteProduct(productId);
+    setShowWarning((showWarning) => !showWarning);
+  };
+  
 
   return (
     <>
       <Navigation />
-      {newProductForm && <Backdrop onclick={createProductHandler} />}
-      {newProductForm && <NewProduct closeFormHandler={createProductHandler} />}
+      {showWarning && (
+        <>
+          <Backdrop onclick={showWarningHandler} />
+          <Modal
+            onclick={showWarningHandler}
+            btnText={"Delete"}
+            btnAction={removeProductHandler}
+          >
+            <>
+              <h1> Delete Product </h1>
+              <p>
+                Are you sure you want to delete this product from the store?
+                This action cannot be redone.
+              </p>
+            </>
+          </Modal>
+        </>
+      )}
+      {newProductForm && (
+        <>
+          <Backdrop onclick={showProductFormHandler} />
+          <NewProduct closeFormHandler={showProductFormHandler} />
+        </>
+      )}
       <div className={styles.Admin}>
         <div className={styles.header}>
           <h1> Product Inventory (Admin) </h1>
           <div className={styles.createProductWrapper}>
-            {/* <h2 className={styles.productsText}> Products </h2> */}
             <div
               className={styles.createProductBtn}
-              onClick={createProductHandler}
+              onClick={showProductFormHandler}
             >
               <h2 className={styles.btnText}> Create </h2>
               <h2 className={styles.btnPlusSymbol}> &#43; </h2>
@@ -50,15 +71,18 @@ const Admin = ({ products, fetchProducts }) => {
         </div>
         <div className={styles.productTableWrapper}>
           <div className={styles.productTable}>
-            {/* <ul className={styles.productRowHeader}> */}
             <li className={styles.productHeader}>product</li>
             <li className={styles.productHeader}>type</li>
             <li className={styles.productHeader}>color</li>
             <li className={styles.productHeader}>price</li>
             <li className={styles.productHeader}>actions</li>
-            {/* </ul> */}
 
-            {products && <ProductList products={products} />}
+            {products && (
+              <ProductList
+                products={products}
+                showWarningHandler={showWarningHandler}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -74,7 +98,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchProducts: () => dispatch(actions.fetchProducts),
+    fetchProducts: () => dispatch(actions.fetchProducts()),
+    deleteProduct: (pId) => dispatch(actions.deleteProduct(pId)),
   };
 };
 
