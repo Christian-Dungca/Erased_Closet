@@ -19,11 +19,13 @@ const Admin = ({ products, fetchProducts, deleteProduct }) => {
   };
 
   const showWarningHandler = (prodId) => {
+    console.log('show warning', prodId);
     setProductId(prodId);
+    console.log(productId)
     setShowWarning((showWarning) => !showWarning);
   };
 
-  const removeProductHandler = (productId) => {
+  const removeProductHandler = () => {
     deleteProduct(productId);
     setShowWarning((showWarning) => !showWarning);
   };

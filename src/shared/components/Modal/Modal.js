@@ -9,7 +9,7 @@ const Modal = ({ onclick, children, btnAction, btnText }) => {
       <div className={styles.childrenWrapper}>{children}</div>
       <div className={styles.footer}>
         <h2 onClick={onclick}> cancel </h2>
-        <button onClick={onclick}> {btnText} </button>
+        <button onClick={btnAction}> {btnText} </button>
       </div>
     </div>
   );
