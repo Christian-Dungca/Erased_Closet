@@ -14,9 +14,10 @@ import SignUpPage from "./users/pages/SignUp";
 import * as actions from "./store/actions/index";
 import styles from "./App.module.scss";
 
-const App = ({ products, fetchProducts}) => {
+const App = ({ products, fetchProducts, user}) => {
   const [isCartOpen, setCart] = useState(false);
   const [productList, setProductList] = useState(null); 
+  console.log('user', user);
   
   useEffect(() => {
     const getInventory = async () => {
@@ -34,8 +35,8 @@ const App = ({ products, fetchProducts}) => {
     setCart(!isCartOpen);
   };
   
-  console.log("products:", products); 
-  console.log('product list', productList); 
+  // console.log("products:", products); 
+  // console.log('product list', productList); 
 
   return (
     <div className={styles.App}>
@@ -64,6 +65,7 @@ const App = ({ products, fetchProducts}) => {
 const mapStateToProps = (state) => {
   return {
     products: state.products.products,
+    user: state.users.user
   };
 };
 

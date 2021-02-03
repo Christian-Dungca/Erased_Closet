@@ -1,25 +1,22 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
 
-export const fetchProducts = () => {
-  return async (dispatch) => {
-    
-    const saveProducts = (res) => {
-      dispatch({
-        type: actionTypes.FETCH_PRODUCTS,
-        result: res,
-      });
-      return res;
-    };
-
-    try {
-      const res = await axios.get("http://localhost:5000/api/products");
-      return saveProducts(res.data.products);
-    } catch (err) {
-      console.log(err);
-      console.log("[ERROR] Can not fetch products");
-    }
+export const fetchProducts = () => async (dispatch) => {
+  const saveProducts = (res) => {
+    dispatch({
+      type: actionTypes.FETCH_PRODUCTS,
+      result: res,
+    });
+    return res;
   };
+
+  try {
+    const res = await axios.get("http://localhost:5000/api/products");
+    return saveProducts(res.data.products);
+  } catch (err) {
+    console.log(err);
+    console.log("[ERROR] Can not fetch products");
+  }
 };
 
 export const fetchProductById = (res) => {

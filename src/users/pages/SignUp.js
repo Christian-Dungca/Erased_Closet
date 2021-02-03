@@ -1,16 +1,19 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
+import Input from "../../shared/components/FormElements/Input";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
 } from "../../shared/components/util/validators";
 import { useForm } from "../../shared/hooks/form-hook";
-import Input from "../../shared/components/FormElements/Input";
+import * as actions from "../../store/actions/index";
 import styles from "./SignUp.module.scss";
 
-const SignUpPage = () => {
+const SignUpPage = ({ signUp }) => {
   const [formState, inputHandler] = useForm(
     {
       name: {
@@ -28,6 +31,21 @@ const SignUpPage = () => {
     },
     false
   );
+  const history = useHistory();
+
+  const signUpHandler = async (e) => {
+    e.preventDefault();
+    try {
+      signUp({
+        name: formState.inputs.name.value,
+        email: formState.inputs.email.value,
+        password: formState.inputs.password.value,
+      });
+      history.push('/')
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className={styles.SignUpPage}>
@@ -37,7 +55,7 @@ const SignUpPage = () => {
           {" "}
           sign up to be able to add items to cart and puchase items
         </p>
-        <form>
+        <form onSubmit={signUpHandler}>
           <div className={styles.nameInput}>
             <Input
               element="input"
@@ -87,4 +105,10 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signUp: (inputData) => dispatch(actions.signUpUser(inputData)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SignUpPage);

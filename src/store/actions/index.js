@@ -10,3 +10,6 @@ export {
     addProduct,
     createProduct
 } from './product';
+export {
+    signUpUser
+} from './user';

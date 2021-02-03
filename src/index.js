@@ -7,12 +7,14 @@ import thunk from 'redux-thunk';
 
 import App from "./App";
 import productsReducer from "./store/reducers/products";
+import userReducer from './store/reducers/users';
 import cartReducer from "./store/reducers/cart";
 import "./index.css";
 
 const rootReducer = combineReducers({
   cart: cartReducer,
-  products: productsReducer
+  products: productsReducer,
+  users: userReducer,
 })
 
 const logger = store => {
@@ -26,7 +28,7 @@ const logger = store => {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, logger)))
 
 // const store = createStore(
 //   rootReducer,
