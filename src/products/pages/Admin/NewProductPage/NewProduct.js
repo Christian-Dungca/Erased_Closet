@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import * as actions from "../../../../store/actions/index";
@@ -11,6 +11,7 @@ import { useForm } from "../../../../shared/hooks/form-hook";
 import styles from "./NewProduct.module.scss";
 
 const NewProduct = ({ addProduct, closeFormHandler }) => {
+  const [formStep, setFormStep] = useState(1);
   const [formState, inputHandler] = useForm(
     {
       name: {
@@ -41,6 +42,14 @@ const NewProduct = ({ addProduct, closeFormHandler }) => {
     false
   );
 
+  const backButtonHandler = () => {
+    setFormStep((formStep) => formStep - 1);
+  };
+
+  const continueButtonHandler = () => {
+    setFormStep((formStep) => formStep + 1);
+  };
+
   const productSubmitHandler = async (event) => {
     event.preventDefault();
     try {
@@ -54,93 +63,151 @@ const NewProduct = ({ addProduct, closeFormHandler }) => {
   return (
     <div className={styles.NewProduct}>
       <div className={styles.header}>
-        <h2 className={styles.headerTitle}> New Product Form </h2>
+        <h2 className={styles.title}> New Product Form </h2>
+        <p className={styles.description}>
+          Create a new product to add to the store.
+        </p>
       </div>
-      <p className={styles.formDescription}>
-        Create a new product to add to the store.
-      </p>
       <form onSubmit={productSubmitHandler}>
-        <div className={styles.name}>
-          <Input
-            element="input"
-            id="name"
-            type="text"
-            label="Product Name"
-            errorText="Please enter valid name"
-            placeholder="Name is required"
-            validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(4)]}
-            onInput={inputHandler}
-          />
-        </div>
-        <div className={styles.type}>
-          <Input
-            element="input"
-            id="type"
-            type="text"
-            label="Type"
-            errorText="Please enter valid type"
-            placeholder="Type is required"
-            validators={[VALIDATOR_REQUIRE()]}
-            onInput={inputHandler}
-          />
-        </div>
-        <div className={styles.price}>
-          <Input
-            element="input"
-            id="price"
-            type="text"
-            label="Price"
-            errorText="Please enter valid price"
-            placeholder="Price must be in usd"
-            validators={[VALIDATOR_REQUIRE()]}
-            onInput={inputHandler}
-          />
-        </div>
-        <div className={styles.details}>
-          <Input
-            element="input"
-            id="details"
-            type="text"
-            label="Details"
-            errorText="Please enter valid details"
-            placeholder="Maximum of 20 characters"
-            validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(4)]}
-            onInput={inputHandler}
-          />
-        </div>
-        <div className={styles.color}>
-          <Input
-            element="input"
-            id="color"
-            type="text"
-            label="Color"
-            errorText="Please enter valid color"
-            placeholder="Color is required"
-            validators={[VALIDATOR_REQUIRE()]}
-            onInput={inputHandler}
-          />
-        </div>
-        <div className={styles.size}>
-          <Input
-            element="input"
-            id="size"
-            type="text"
-            label="size"
-            errorText="Please enter valid size"
-            placeholder="Size is required"
-            validators={[VALIDATOR_REQUIRE()]}
-            onInput={inputHandler}
-          />
-        </div>
-        {/* disabled={!formState.isValid */}
-        <button
+        <StepOne
+          inputHandler={inputHandler}
+          currentStep={formStep}
+          className={styles.StepOne}
+        />
+        <StepTwo inputHandler={inputHandler} currentStep={formStep} />
+        {/* <button
           type="submit"
           disabled={!formState.isValid}
           className={styles.button}
-        >
+          >
           Add
-        </button>
+        </button> */}
       </form>
+      <div className={styles.buttonsContainer}>
+        {formStep >= 2 ? (
+          <button
+            type="button"
+            className={`${styles.back} ${styles.btn}`}
+            onClick={backButtonHandler}
+          >
+            Back
+          </button>
+        ) : null}
+        {formStep <= 2 ? (
+          <button
+            type="button"
+            className={`${styles.continue} ${styles.btn}`}
+            onClick={continueButtonHandler}
+          >
+            Continue
+          </button>
+        ) : null}
+      </div>
+    </div>
+  );
+};
+
+// Details
+const StepOne = ({ inputHandler, currentStep }) => {
+  if (currentStep !== 1) return null;
+
+  return (
+    <div className={styles.StepOne}>
+      <div className={styles.name}>
+        <Input
+          element="input"
+          id="name"
+          type="text"
+          label="Product Name"
+          errorText="Please enter valid name"
+          placeholder="Name is required"
+          validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(4)]}
+          onInput={inputHandler}
+        />
+      </div>
+      <div className={styles.type}>
+        <Input
+          element="input"
+          id="type"
+          type="text"
+          label="Type"
+          errorText="Please enter valid type"
+          placeholder="Type is required"
+          validators={[VALIDATOR_REQUIRE()]}
+          onInput={inputHandler}
+        />
+      </div>
+      <div className={styles.details}>
+        <Input
+          element="input"
+          id="details"
+          type="text"
+          label="Details"
+          errorText="Please enter valid details"
+          placeholder="Maximum of 20 characters"
+          validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(4)]}
+          onInput={inputHandler}
+        />
+      </div>
+    </div>
+  );
+};
+
+//Attributes
+const StepTwo = ({ inputHandler, currentStep }) => {
+  if (currentStep !== 2) return null;
+
+  return (
+    <div className={styles.StepTwo}>
+      <div className={styles.type}>
+        <Input
+          element="input"
+          id="type"
+          type="text"
+          label="Type"
+          errorText="Please enter valid type"
+          placeholder="Type is required"
+          validators={[VALIDATOR_REQUIRE()]}
+          onInput={inputHandler}
+        />
+      </div>
+      <div className={styles.price}>
+        <Input
+          element="input"
+          id="price"
+          type="text"
+          label="Price"
+          errorText="Please enter valid price"
+          placeholder="Price must be in usd"
+          validators={[VALIDATOR_REQUIRE()]}
+          onInput={inputHandler}
+        />
+      </div>
+
+      <div className={styles.color}>
+        <Input
+          element="input"
+          id="color"
+          type="text"
+          label="Color"
+          errorText="Please enter valid color"
+          placeholder="Color is required"
+          validators={[VALIDATOR_REQUIRE()]}
+          onInput={inputHandler}
+        />
+      </div>
+      <div className={styles.size}>
+        <Input
+          element="input"
+          id="size"
+          type="text"
+          label="Size"
+          errorText="Please enter valid size"
+          placeholder="Size is required"
+          validators={[VALIDATOR_REQUIRE()]}
+          onInput={inputHandler}
+        />
+      </div>
     </div>
   );
 };

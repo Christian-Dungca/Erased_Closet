@@ -1,9 +1,10 @@
 .NewProduct {
   font-family: var(--font-montserrat);
   background-color: white;
-  width: 70rem;
-  height: max-content;
-  padding: 4rem 8rem;
+  min-width: 70%;
+  max-width: 0%;
+  height: 80%;
+  max-height: 80%;
   position: fixed;
   z-index: 100;
   top: 50%;
@@ -14,67 +15,118 @@
   flex-direction: column;
   justify-content: center;
 
-  .header {
-    width: 100%;
-    // background-color: rgb(56, 56, 56);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: grid;
+  grid-template-columns: [gutter-left] 8rem [content-start] repeat(10, 1fr) [content-end] 8rem [gutter-right];
+  grid-template-rows: [gutter-top] 4rem [content-start] repeat(12, 1fr) [content-end] 4rem [gutter-bottom];
 
-    .headerTitle {
-      margin-bottom: 2rem;
-    }
+  .btn {
+    border: none;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    padding: 2rem 4rem;
+    position: absolute;
+    bottom: 2rem;
   }
 
-  .formDescription {
-    margin-bottom: 2rem;
+  .back {
+    background-color: rgb(223, 223, 223);
+    color: #7E96FD;
+    left: 2rem;
+  }
+
+  .continue {
+    background-color: #7E96FD;
+    color: white;
+    right: 2rem;
+  }
+
+  .header {
+    grid-column: content-start / content-end;
+    grid-row: content-start / 4;
+    // background-color: rgb(57, 107, 59);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+      font-size: 3.5rem;
+      font-weight: 400;
+    }
   }
 
   form {
-    width: 100%;
-    height: max-content;
+    grid-column: content-start / content-end;
+    grid-row: 4 / content-end;
+    overflow: hidden;
+    // background-color: yellow;
     display: grid;
-    column-gap: 4rem;
-    row-gap: 2rem;
     grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr) auto;
+  }
+}
 
-    .name {
-      grid-column: 2 / 7;
-    }
+// .buttonsContainer {
+//   position: absolute;
+//   bottom: 0;
+//   background-color: green;
+//   width: 100%;
+//   height: 4rem;
 
-    .type {
-      grid-column: 7 / 12;
-    }
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   padding: 0 4rem;
 
-    .price {
-      grid-column: 2 / 7;
-    }
-    .details {
-      grid-column: 7 / 12;
-    }
-    .color {
-      grid-column: 2 / 7;
-    }
-    .size {
-      grid-column: 7 / 12;
-    }
+//   .btn {
+//     border: none;
+//     border-radius: 8px;
+//     font-size: 1.6rem;
+//     padding: 2rem 4rem;
+//   }
+  
+//   .back {
+//     background-color: rgb(223, 223, 223);
+//     color: #7E96FD;
+//   }
 
-    .button {
-      grid-column: 5 / 9;
-      border-radius: 4rem;
-      border: none;
-      padding: 2rem;
-      color: white;
-      transition: all 0.2s;
+//   .continue {
+//     background-color: #7E96FD;
+//     color: white;
+//   }
+// }
 
-      &:disabled {
-        background-color: #ea4866;
-        opacity: 0.8;
-      }
+.StepOne {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  // background-color: green;
 
-      &:enabled {
-        background-color: black;
-      }
-    }
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  row-gap: 1.4rem;
+
+  .name,
+  .type,
+  .details {
+    grid-column: 1 / -1;
+  }
+}
+
+.StepTwo {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  // background-color: green;
+
+  // overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  row-gap: 1.4rem;
+
+  .type,
+  .price,
+  .color,
+  .size {
+    grid-column: 1 / -1;
   }
 }

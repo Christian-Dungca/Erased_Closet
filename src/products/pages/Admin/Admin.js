@@ -10,7 +10,7 @@ import * as actions from "../../../store/actions/index";
 import styles from "./Admin.module.scss";
 
 const Admin = ({ products, fetchProducts, deleteProduct }) => {
-  const [newProductForm, setNewProductForm] = useState(false); 
+  const [newProductForm, setNewProductForm] = useState(true); 
   const [showWarning, setShowWarning] = useState(false);
   const [productId, setProductId] = useState(null);
 
@@ -107,16 +107,3 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Admin);
 
-/* 
-name,
-type,
-price: +price,
-details,
-color,
-size,
-image: "https://picsum.photos/id/237/200/300",
-images: [
-  "https://picsum.photos/seed/picsum/200/300",
-  "https://picsum.photos/200/300?grayscale",
-],
-*/
