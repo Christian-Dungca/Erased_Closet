@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import { connect } from "react-redux";
+import gsap from "gsap";
 
+import ImageUpload from "../../../../shared/components/FormElements/ImageUpload";
 import * as actions from "../../../../store/actions/index";
 import Input from "../../../../shared/components/FormElements/Input";
 import {
@@ -42,6 +44,26 @@ const NewProduct = ({ addProduct, closeFormHandler }) => {
     false
   );
 
+  const [play, setPlay] = useState(true);
+  const NewProductForm = useRef();
+  const timeline = useMemo(() => gsap.timeline({ paused: false }), []);
+
+  useEffect(() => {
+    timeline.from(NewProductForm.current, {
+      y: 300,
+      opacity: 0,
+      duration: 0.3,
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   if (play){
+  //     timeline.play()
+  //   } else {
+  //     timeline.pause();
+  //   }
+  // })
+
   const backButtonHandler = () => {
     setFormStep((formStep) => formStep - 1);
   };
@@ -61,7 +83,7 @@ const NewProduct = ({ addProduct, closeFormHandler }) => {
   };
 
   return (
-    <div className={styles.NewProduct}>
+    <div className={styles.NewProduct} ref={NewProductForm}>
       <div className={styles.header}>
         <h2 className={styles.title}> New Product Form </h2>
         <p className={styles.description}>
@@ -75,6 +97,7 @@ const NewProduct = ({ addProduct, closeFormHandler }) => {
           className={styles.StepOne}
         />
         <StepTwo inputHandler={inputHandler} currentStep={formStep} />
+        <ImageUpload inputHandler={inputHandler} currentStep={formStep} />
         {/* <button
           type="submit"
           disabled={!formState.isValid}
