@@ -3,26 +3,27 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./ImageUpload.module.scss";
 
 const ImageUpload = ({ inputHandler, currentStep, id }) => {
-  const [file, setFile] = useState();
+  const [files, setFile] = useState();
   const [filePreviewUrl, setFilePreviewUrl] = useState();
   const [isValid, setIsValid] = useState(false);
   const fileInputRef = useRef(null);
 
-  useEffect(() => {
-    if (!file) return;
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      setFilePreviewUrl(fileReader.result)
-    }
-    fileReader.readAsDataURL(file)
-  }, [file]);
+  // useEffect(() => {
+  //   if (!files) return;
+  //   const fileReader = new FileReader();
+  //   fileReader.onload = () => {
+  //     setFilePreviewUrl(fileReader.result)
+  //   }
+  //   fileReader.readAsDataURL(files)
+  // }, [files]);
 
   const pickedHandler = (event) => {
     let pickedFile;
     let fileIsValid = isValid;
     if (event.target.files && event.target.files.length !== 0) {
       console.log(event.target.files);
-      pickedFile = event.target.files[0];
+      // pickedFile = event.target.files[0];
+      pickedFile = event.target.files;
       setFile(pickedFile);
       setIsValid(true);
       fileIsValid = true;
@@ -44,6 +45,7 @@ const ImageUpload = ({ inputHandler, currentStep, id }) => {
         id={id}
         type="file"
         accept=".jpg,.jpeg,.png"
+        multiple
         style={{ display: "none" }}
         onChange={pickedHandler}
       />

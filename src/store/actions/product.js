@@ -57,22 +57,18 @@ export const createProduct = (inputs) => {
     bodyFormData.append("details", inputs.details.value);
     bodyFormData.append("color", inputs.color.value);
     bodyFormData.append("size", inputs.size.value);
-    bodyFormData.append("image", inputs.image.value);
 
-    console.log(bodyFormData);
+    for (const key of Object.keys(inputs.images.value)) {
+      bodyFormData.append("images", inputs.images.value[key]);
+    }
 
     try {
-      const resData = await fetch("http://localhost:5000/api/products", {
-        method: "POST",
-        body: bodyFormData,
+      const resData = await axios({
+        method: "post",
+        url: "http://localhost:5000/api/products",
+        data: bodyFormData,
+        headers: { "Content-Type": "multipart/form-data" },
       });
-
-      // const res = await axios({
-      //   method: "post",
-      //   url: "http://localhost:5000/api/products",
-      //   data: bodyFormData,
-      //   headers: { "Content-Type": "multipart/form-data" },
-      // });
       return addProduct(resData);
     } catch (err) {
       console.log(err);

@@ -41,7 +41,7 @@ const NewProduct = ({ addProduct, closeFormHandler }) => {
         value: "",
         isValid: false,
       },
-      image: {
+      images: {
         value: undefined,
         isValid: false,
       },
@@ -69,6 +69,7 @@ const NewProduct = ({ addProduct, closeFormHandler }) => {
   const productSubmitHandler = async (event) => {
     event.preventDefault();
     try {
+      // console.log(formState.inputs)
       await addProduct(formState.inputs);
       closeFormHandler();
     } catch (err) {
@@ -92,7 +93,7 @@ const NewProduct = ({ addProduct, closeFormHandler }) => {
         />
         <StepTwo inputHandler={inputHandler} currentStep={formStep} />
         <ImageUpload
-          id="image"
+          id="images"
           inputHandler={inputHandler}
           currentStep={formStep}
         />
