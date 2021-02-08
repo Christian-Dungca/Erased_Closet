@@ -96,13 +96,14 @@ const NewProduct = ({ addProduct, closeFormHandler }) => {
           inputHandler={inputHandler}
           currentStep={formStep}
         />
-        {/* <button
+        <button
           type="submit"
           disabled={!formState.isValid}
           className={styles.button}
-          >
+          style={{ position: "absolute", top: "0", left: "0" }}
+        >
           Add
-        </button> */}
+        </button>
       </form>
       <div className={styles.buttonsContainer}>
         {formStep >= 2 ? (
@@ -180,18 +181,6 @@ const StepTwo = ({ inputHandler, currentStep }) => {
 
   return (
     <div className={styles.StepTwo}>
-      <div className={styles.type}>
-        <Input
-          element="input"
-          id="type"
-          type="text"
-          label="Type"
-          errorText="Please enter valid type"
-          placeholder="Type is required"
-          validators={[VALIDATOR_REQUIRE()]}
-          onInput={inputHandler}
-        />
-      </div>
       <div className={styles.price}>
         <Input
           element="input"

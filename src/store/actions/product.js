@@ -19,7 +19,7 @@ export const fetchProducts = () => async (dispatch) => {
   }
 };
 
-export const fetchProductById = (res) => {
+const fetchProductById = (res) => {
   return {
     type: actionTypes.FETCH_PRODUCT,
     result: res,
@@ -41,32 +41,43 @@ export const fetchProduct = (pId) => {
   };
 };
 
-export const addProduct = (res) => {
-  return {
-    type: actionTypes.ADD_PRODUCT,
-    result: res,
-  };
-};
-
 export const createProduct = (inputs) => {
-  return (dispatch) => {
-    axios
-      .post("http://localhost:5000/api/products", {
-        name: inputs.name.value,
-        type: inputs.type.value,
-        price: inputs.price.value,
-        details: inputs.details.value,
-        color: inputs.color.value,
-        size: inputs.size.value,
-      })
-      .then((res) => {
-        console.log(res.data);
-        dispatch(addProduct(res.data.product));
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("[ERROR] Can not add product");
+  return async (dispatch) => {
+    const addProduct = (res) => {
+      return {
+        type: actionTypes.ADD_PRODUCT,
+        result: res,
+      };
+    };
+
+    let bodyFormData = new FormData();
+    bodyFormData.append("name", inputs.name.value);
+    bodyFormData.append("type", inputs.type.value);
+    bodyFormData.append("price", inputs.price.value);
+    bodyFormData.append("details", inputs.details.value);
+    bodyFormData.append("color", inputs.color.value);
+    bodyFormData.append("size", inputs.size.value);
+    bodyFormData.append("image", inputs.image.value);
+
+    console.log(bodyFormData);
+
+    try {
+      const resData = await fetch("http://localhost:5000/api/products", {
+        method: "POST",
+        body: bodyFormData,
       });
+
+      // const res = await axios({
+      //   method: "post",
+      //   url: "http://localhost:5000/api/products",
+      //   data: bodyFormData,
+      //   headers: { "Content-Type": "multipart/form-data" },
+      // });
+      return addProduct(resData);
+    } catch (err) {
+      console.log(err);
+      console.log("[ERROR] Can not add product");
+    }
   };
 };
 

@@ -7,7 +7,6 @@ export {
     fetchProduct,
     deleteProduct,
     deleteProductById,
-    addProduct,
     createProduct
 } from './product';
 export {
