@@ -14,6 +14,7 @@ import styles from "./NewProduct.module.scss";
 
 const NewProduct = ({ addProduct, closeFormHandler }) => {
   const [formStep, setFormStep] = useState(1);
+  const NewProductForm = useRef(0);
   const [formState, inputHandler] = useForm(
     {
       name: {
@@ -40,29 +41,22 @@ const NewProduct = ({ addProduct, closeFormHandler }) => {
         value: "",
         isValid: false,
       },
+      image: {
+        value: undefined,
+        isValid: false,
+      },
     },
     false
   );
 
-  const [play, setPlay] = useState(true);
-  const NewProductForm = useRef();
-  const timeline = useMemo(() => gsap.timeline({ paused: false }), []);
-
   useEffect(() => {
+    const timeline = gsap.timeline({ paused: false });
     timeline.from(NewProductForm.current, {
       y: 300,
       opacity: 0,
       duration: 0.3,
     });
   }, []);
-
-  // useEffect(() => {
-  //   if (play){
-  //     timeline.play()
-  //   } else {
-  //     timeline.pause();
-  //   }
-  // })
 
   const backButtonHandler = () => {
     setFormStep((formStep) => formStep - 1);
@@ -97,7 +91,11 @@ const NewProduct = ({ addProduct, closeFormHandler }) => {
           className={styles.StepOne}
         />
         <StepTwo inputHandler={inputHandler} currentStep={formStep} />
-        <ImageUpload inputHandler={inputHandler} currentStep={formStep} />
+        <ImageUpload
+          id="image"
+          inputHandler={inputHandler}
+          currentStep={formStep}
+        />
         {/* <button
           type="submit"
           disabled={!formState.isValid}

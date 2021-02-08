@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { gsap } from "gsap";
 import { Transition } from "react-transition-group";
 
 import Cart from "../../components/Cart/Cart";
@@ -12,6 +13,31 @@ import styles from "./ProductsPag.module.scss";
 const ProductsPage = (props) => {
   const [productsList, setProductsList] = useState(props.products);
   const [currentProduct, setCurrentProduct] = useState(null);
+  const [playAnimation, setPlayAnimation] = useState(false);
+  const imageRef = useRef(0);
+  const timeline = useMemo(() => gsap.timeline({ paused: true }), []);
+
+  useEffect(() => {
+    timeline.to(imageRef.current, {
+      left: 0,
+      top: 0,
+      height: "100vh",
+      width: "60vw"
+    });
+    if (playAnimation) {
+      timeline.play();
+    } else {
+      timeline.reverse();
+    }
+  }, [playAnimation]);
+
+  // useEffect(() => {
+  //   if (playAnimation) {
+  //     timeline.play();
+  //   } else {
+  //     timeline.reverse();
+  //   }
+  // }, [playAnimation]);
 
   return (
     <div>
@@ -36,16 +62,20 @@ const ProductsPage = (props) => {
             <h3 className={styles.subTitle}> Will You Carry the Mark </h3>
           </div>
         </div>
-        <div className={styles.rightContainer}>
-          <Link
+        <div
+          className={styles.rightContainer}
+          ref={imageRef}
+          onClick={() => setPlayAnimation(!playAnimation)}
+        >
+          {/* <Link
             // to={`/product/${currentProduct.id}`}
             to={`/product/60074469f356fc228cf64ef4`}
             className={styles.linkContainer}
-          >
-            <div className={styles.imageContainer}>
-              {/* <img src={`${currentProduct.imageUrl}`}></img> */}
-            </div>
-          </Link>
+          > */}
+          <div className={styles.imageContainer}>
+            {/* <img src={`${currentProduct.imageUrl}`}></img> */}
+          </div>
+          {/* </Link> */}
         </div>
         <div className={styles.productNumber}>
           <h2>

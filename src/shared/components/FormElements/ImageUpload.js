@@ -1,17 +1,40 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import styles from "./ImageUpload.module.scss";
 
 const ImageUpload = ({ inputHandler, currentStep, id }) => {
+  const [file, setFile] = useState();
+  const [filePreviewUrl, setFilePreviewUrl] = useState();
+  const [isValid, setIsValid] = useState(false);
   const fileInputRef = useRef(null);
 
+  useEffect(() => {
+    if (!file) return;
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setFilePreviewUrl(fileReader.result)
+    }
+    fileReader.readAsDataURL(file)
+  }, [file]);
+
   const pickedHandler = (event) => {
-      console.log(event.target)
-  }
+    let pickedFile;
+    let fileIsValid = isValid;
+    if (event.target.files && event.target.files.length !== 0) {
+      console.log(event.target.files);
+      pickedFile = event.target.files[0];
+      setFile(pickedFile);
+      setIsValid(true);
+      fileIsValid = true;
+    } else {
+      setIsValid(false);
+    }
+    inputHandler(id, pickedFile, fileIsValid);
+  };
 
   const pickImageHandler = () => {
     fileInputRef.current.click();
-  }
+  };
 
   if (currentStep !== 3) return null;
   return (
@@ -35,7 +58,9 @@ const ImageUpload = ({ inputHandler, currentStep, id }) => {
         </svg>
       </div>
       <div className={styles.imagePreview}>
-        <div className={styles.image}></div>
+        <div className={styles.image}>
+          {filePreviewUrl && <img src={filePreviewUrl} />}
+        </div>
         <div className={styles.imageName}></div>
       </div>
       <div className={styles.imagePreview}>
