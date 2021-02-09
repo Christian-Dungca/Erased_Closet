@@ -1,6 +1,10 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
 
+const isBadHttpResponse = (status) => {
+  return status >= 400 && status <= 599 ? true : false;
+};
+
 export const fetchProducts = () => async (dispatch) => {
   const saveProducts = (res) => {
     dispatch({
@@ -11,89 +15,102 @@ export const fetchProducts = () => async (dispatch) => {
   };
 
   try {
-    const res = await axios.get("http://localhost:5000/api/products");
-    return saveProducts(res.data.products);
+    const resData = await axios.get("http://localhost:5000/api/products");
+    if (!isBadHttpResponse(resData.status)) {
+      return saveProducts(resData.data.products);
+    } else {
+      throw new Error(`Bad request [${resData.status}]. Can't get products `);
+    }
   } catch (err) {
     console.log(err);
-    console.log("[ERROR] Can not fetch products");
   }
 };
 
-const fetchProductById = (res) => {
-  return {
-    type: actionTypes.FETCH_PRODUCT,
-    result: res,
+export const fetchProduct = (pId) => async (dispatch) => {
+  console.log("fetchign product");
+  const fetchProductById = (res) => {
+    dispatch({
+      type: actionTypes.FETCH_PRODUCT,
+      result: res,
+    });
+    return res;
   };
+
+  try {
+    const resData = await axios.get(
+      `http://localhost:5000/api/products/${pId}`
+    );
+
+    if (!isBadHttpResponse(resData.status)) {
+      return fetchProductById(resData.data.product);
+    } else {
+      throw new Error(
+        `Bad request [${resData.status}]. Can't get that product`
+      );
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-export const fetchProduct = (pId) => {
-  return (dispatch) => {
-    axios
-      .get(`http://localhost:5000/api/products/${pId}`)
-      .then((res) => {
-        // console.log("res", res.data.product);
-        dispatch(fetchProductById(res.data.product));
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("[ERROR] Can not fetch products");
-      });
-  };
-};
-
-export const createProduct = (inputs) => {
-  return async (dispatch) => {
-    const addProduct = (res) => {
-      return {
-        type: actionTypes.ADD_PRODUCT,
-        result: res,
-      };
+export const createProduct = (inputs) => async (dispatch) => {
+  const addProduct = (res) => {
+    return {
+      type: actionTypes.ADD_PRODUCT,
+      result: res,
     };
-
-    let bodyFormData = new FormData();
-    bodyFormData.append("name", inputs.name.value);
-    bodyFormData.append("type", inputs.type.value);
-    bodyFormData.append("price", inputs.price.value);
-    bodyFormData.append("details", inputs.details.value);
-    bodyFormData.append("color", inputs.color.value);
-    bodyFormData.append("size", inputs.size.value);
-
-    for (const key of Object.keys(inputs.images.value)) {
-      bodyFormData.append("images", inputs.images.value[key]);
-    }
-
-    try {
-      const resData = await axios({
-        method: "post",
-        url: "http://localhost:5000/api/products",
-        data: bodyFormData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      return addProduct(resData);
-    } catch (err) {
-      console.log(err);
-      console.log("[ERROR] Can not add product");
-    }
   };
+
+  let bodyFormData = new FormData();
+  bodyFormData.append("name", inputs.name.value);
+  bodyFormData.append("type", inputs.type.value);
+  bodyFormData.append("price", inputs.price.value);
+  bodyFormData.append("details", inputs.details.value);
+  bodyFormData.append("color", inputs.color.value);
+  bodyFormData.append("size", inputs.size.value);
+
+  for (const key of Object.keys(inputs.images.value)) {
+    bodyFormData.append("images", inputs.images.value[key]);
+  }
+
+  try {
+    const resData = await axios({
+      method: "post",
+      url: "http://localhost:5000/api/products",
+      data: bodyFormData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    if (!isBadHttpResponse(resData.status)) {
+      return addProduct(resData.product);
+    } else {
+      throw new Error(
+        `Bad request [${resData.status}]. Couldn't create new product`
+      );
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-export const deleteProductById = (res) => {
-  return {
-    type: actionTypes.DELETE_PRODUCT,
-    result: res,
+export const deleteProduct = (pId) => async (dispatch) => {
+  const deleteProductById = (res) => {
+    dispatch({
+      type: actionTypes.DELETE_PRODUCT,
+      result: res,
+    });
   };
-};
 
-export const deleteProduct = (pId) => {
-  return (dispatch) => {
-    axios
-      .delete(`http://localhost:5000/api/products/${pId}`)
-      .then((res) => {
-        dispatch(deleteProductById(res.data.deletedProduct));
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("[ERROR] Can not delete product");
-      });
-  };
+  try {
+    const resData = axios.delete(`http://localhost:5000/api/products/${pId}`);
+    if (!isBadHttpResponse(resData.status)) {
+      return deleteProductById(resData.data.deletedProduct);
+    } else {
+      throw new Error(
+        `Bad request [${resData.status}]. Couldn't delete that product`
+      );
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };
