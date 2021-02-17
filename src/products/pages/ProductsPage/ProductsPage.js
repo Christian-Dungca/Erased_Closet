@@ -31,14 +31,6 @@ const ProductsPage = (props) => {
     }
   }, [playAnimation]);
 
-  // useEffect(() => {
-  //   if (playAnimation) {
-  //     timeline.play();
-  //   } else {
-  //     timeline.reverse();
-  //   }
-  // }, [playAnimation]);
-
   return (
     <div>
       {props.isCartOpen && (
@@ -56,31 +48,9 @@ const ProductsPage = (props) => {
       )}
       <Navigation handleCart={props.handleCart} />
       <div className={styles.ProductsPage}>
-        <div className={styles.leftContainer}>
-          <div className={styles.titleContainer}>
-            <h1 className={styles.mainTitle}> Erased Closet </h1>
-            <h3 className={styles.subTitle}> Will You Carry the Mark </h3>
-          </div>
-        </div>
-        <div
-          className={styles.rightContainer}
-          ref={imageRef}
-          onClick={() => setPlayAnimation(!playAnimation)}
-        >
-          {/* <Link
-            // to={`/product/${currentProduct.id}`}
-            to={`/product/60074469f356fc228cf64ef4`}
-            className={styles.linkContainer}
-          > */}
-          <div className={styles.imageContainer}>
-            {/* <img src={`${currentProduct.imageUrl}`}></img> */}
-          </div>
-          {/* </Link> */}
-        </div>
-        <div className={styles.productNumber}>
-          <h2>
-            01 <span> / </span> 12
-          </h2>
+        <div className={styles.bigImgWrapper}></div>
+        <div className={styles.contentWrapper}>
+          <h1> the erased closet: worldwide syndicate- will you carry the mark</h1>
         </div>
       </div>
     </div>

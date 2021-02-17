@@ -1,87 +1,29 @@
 .ProductsPage {
-  width: 100vw;
+  width: 100%;
   height: 90vh;
-  display: flex;
+  background-color: rgb(182, 182, 182);
+  display: grid;
+  grid-template-columns: 5rem [gutter-start] 5fr 5fr 3fr [gutter-end] 5rem;
+  grid-template-rows: 5rem [gutter-start] 4fr 1fr 3fr 2fr [gutter-end] 5rem;
+  column-gap: 1rem;
 
-  .leftContainer {
-    width: 50%;
-    height: 100%;
-    // background-color: palegoldenrod;
-    //   background-color: #ebeeef;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+  .bigImgWrapper {
+    grid-column: 2 / span 1;
+    grid-row: 2 / gutter-end;
+    background-color: lightgoldenrodyellow;
+    background: url(../../../assets/images/sm-shadow-yellow-bg.jpg);
 
-    .titleContainer {
-      // background-color: rgb(255, 110, 110);
-      width: max-content;
-      margin-top: 10rem;
-      text-transform: uppercase;
-      .mainTitle {
-        font-family: var(--font-merriweather);
-        font-family: var(--font-montserrat);
-        font-size: 8rem;
-      }
-
-      .subTitle {
-        font-family: var(--font-merriweather);
-        font-size: 4.5rem;
-        color: rgb(65, 65, 65);
-      }
-    }
   }
+  
+  .contentWrapper {
+    grid-column: 3 / gutter-end;
+    grid-row: 2 / gutter-end;
+    background-color: lightsalmon;
 
-  .rightContainer {
-    position: absolute;
-    right: 4rem;
-    width: 50%;
-    height: 100%;
-    // background-color: powderblue;
-    display: flex;
-    justify-content: flex-start;
-
-    .imageContainer {
-      width: 100%;
-      height: 100%;
-      background: url(../../../assets/images/big-model-yellow-hat.jpg);
-      // background: url(../../../assets/svgs/model.png);
-      background-color: #ebeeef;
-      background-size: cover;
+    h1 {
+      font-family: var(--main-font);
+      font-weight: 900;
+      font-size: 7rem;
     }
-
-    .linkContainer {
-      width: 90%;
-      height: 100%;
-
-      .imageContainer {
-        width: 100%;
-        height: 100%;
-        background: url(../../../assets/images/big-model-yellow-hat.jpg);
-        // background: url(../../../assets/svgs/model.png);
-        background-color: #ebeeef;
-        background-size: cover;
-      }
-    }
-  }
-}
-
-.productNumber {
-  width: max-content;
-  height: 20rem;
-  // background-color: #444444;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  // justify-content: center;
-  align-items: center;
-
-  h2 {
-    margin-left: 4rem;
-    font-size: 10rem;
-  }
-
-  span {
-    font-size: 7rem;
   }
 }
