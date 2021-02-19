@@ -8,6 +8,7 @@ import Cart from "../../components/Cart/Cart";
 import Backdrop from "../../../shared/components/Backdrop/Backdrop";
 import Navigation from "../../../shared/components/Navigation/Navigation";
 import Landing from '../../components/Landing/Landing';
+import About from '../../components/About/About';
 import * as actions from "../../../store/actions/index";
 import styles from "./ProductsPage.module.scss";
 
@@ -49,6 +50,7 @@ const ProductsPage = (props) => {
       )}
       <Navigation handleCart={props.handleCart} />
       <Landing />
+      <About />
     </div>
   );
 };

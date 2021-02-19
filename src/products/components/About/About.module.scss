@@ -1,0 +1,63 @@
+.About {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  //   background-color:cadetblue;
+
+  .gridContainer {
+    max-width: 1700px;
+    height: 100%;
+    display: grid;
+    row-gap: 2rem;
+    grid-template-columns: 1fr 7fr 0.5fr 5fr 1fr;
+    grid-template-rows: 1fr 1fr auto auto 3fr [gutter-end] 0.5fr;
+    font-family: var(--main-font);
+
+    .image {
+      background: url(../../../assets/images/photo-for-erased-lighter.png);
+      background-size: cover;
+      background-position: 50% 70%;
+      grid-column: 2 / span 2;
+      grid-row: 2 / gutter-end;
+      position: relative;
+      z-index: 5;
+
+      .imageAccent {
+        width: 40%;
+        height: 10%;
+        background-color: #c7d6c4;
+        opacity: 0.8;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transform: translate(10%, 30%);
+      }
+      .imageText {
+        //   background-color: yellow;
+        font-size: calc(4rem + 9vw);
+        text-transform: lowercase;
+        color: #c7d6c4;
+        opacity: 0.95;
+        position: absolute;
+        top: 10%;
+        left: 0%;
+        transform: translate(-55%, 0%) rotate(-90deg);
+      }
+    }
+    .topDescription {
+      grid-column: 3 / span 2;
+      grid-row: 3;
+      font-size: calc(1rem + 1vw);
+      font-weight: 800;
+      z-index: 6;
+    }
+    .bottomDescription {
+      grid-column: 3 / span 2;
+      grid-row: 4;
+      font-size: calc(1rem + 0.7vw);
+      font-weight: 500;
+      z-index: 6;
+    }
+  }
+}
