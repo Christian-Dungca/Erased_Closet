@@ -1,0 +1,42 @@
+.Landing {
+  width: 100%;
+  height: 100vh;
+
+  .container {
+    width: 100%;
+    height: 100%;
+    background: url(../../../assets/images/med-michael-angelo.jpg);
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%);
+  }
+  .imgContainer {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    min-width: 30rem;
+    height: 90%;
+    background: url(../../../assets/images/sm-flower-head.png);
+    background-size: cover;
+
+    .syndicateText,
+    .studiosText {
+      font-size: calc(5rem + 5vw);
+      color: #fff;
+    }
+    .syndicateText {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+    }
+    .studiosText {
+      position: absolute;
+      top: 50%;
+      right: 0%;
+      transform: translate(50%, -50%) rotate(90deg);
+    }
+  }
+}

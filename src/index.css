@@ -20,8 +20,10 @@
   --space-side-med: 8rem;
   --space-side-lg: 10rem;
   --bg-color: #fdfcfd;
-  --main-font: 'Playfair Display', serif;
-  --secondary-font: 'Brygada 1918', serif;
+  /* --bg-orange: #FF824C; */
+  --bg-orange: #fff;
+  --main-font: "Playfair Display", serif;
+  --secondary-font: "Brygada 1918", serif;
 }
 
 *,

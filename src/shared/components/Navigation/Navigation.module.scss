@@ -1,19 +1,25 @@
 .Navigation {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 10vh;
   width: 100vw;
-  background-color: var(--bg-color);
+  // background-color: black;
+  color: white;
   display: flex;
   justify-content: flex-end;
   font-family: var(--font-montserrat);
+  font-family: var(--main-font);
+  z-index: 10;
 
   .Links {
     // background-color: lightpink;
-    width: 50%;
+    width: max-content;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    text-transform: uppercase;
+    text-transform: lowercase;
     font-weight: 600;
 
     li {
@@ -23,21 +29,31 @@
       &:nth-last-child(1) {
         margin-right: 4rem;
       }
+
+      img {
+        width: 3rem;
+        height: 3rem;
+      }
     }
   }
 }
 
 .logoContainer {
-    width: 50%;
-    height: 100%;
     // background-color: lightyellow;
-    display: flex;
-    align-items: center;
+    width: max-content;
+    height: 100%;
+    position: absolute;
+    top: 1vh;
+    left: 50%;
+    transform: translate(-50%, 0%);
 
     .logo {
-        text-transform: uppercase;
-        margin-left: 4rem;
-        color: black;
+        text-transform: lowercase;
         text-decoration: none;
     }
+}
+
+a {
+  color: white;
+  text-decoration: none;
 }

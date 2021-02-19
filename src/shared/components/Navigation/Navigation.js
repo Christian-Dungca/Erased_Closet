@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import bagIcon from "../../../assets/svgs/shopping_bag-white-18dp.svg";
+import searchIcon from "../../../assets/svgs/search-white-18dp.svg";
 import styles from "./Navigation.module.scss";
 
 const Navigation = (props) => {
@@ -17,10 +19,14 @@ const Navigation = (props) => {
       )}
       <ul className={styles.Links}>
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/login"> sign in</Link>
         </li>
-        <li> Search </li>
-        <li onClick={props.handleCart}> Cart </li>
+        <li>
+          <img src={searchIcon} />
+        </li>
+        <li onClick={props.handleCart}>
+          <img src={bagIcon} />
+        </li>
       </ul>
     </nav>
   );

@@ -7,8 +7,9 @@ import { Transition } from "react-transition-group";
 import Cart from "../../components/Cart/Cart";
 import Backdrop from "../../../shared/components/Backdrop/Backdrop";
 import Navigation from "../../../shared/components/Navigation/Navigation";
+import Landing from '../../components/Landing/Landing';
 import * as actions from "../../../store/actions/index";
-import styles from "./ProductsPag.module.scss";
+import styles from "./ProductsPage.module.scss";
 
 const ProductsPage = (props) => {
   const [productsList, setProductsList] = useState(props.products);
@@ -22,7 +23,7 @@ const ProductsPage = (props) => {
       left: 0,
       top: 0,
       height: "100vh",
-      width: "60vw"
+      width: "60vw",
     });
     if (playAnimation) {
       timeline.play();
@@ -47,12 +48,7 @@ const ProductsPage = (props) => {
         </>
       )}
       <Navigation handleCart={props.handleCart} />
-      <div className={styles.ProductsPage}>
-        <div className={styles.bigImgWrapper}></div>
-        <div className={styles.contentWrapper}>
-          <h1> the erased closet: worldwide syndicate- will you carry the mark</h1>
-        </div>
-      </div>
+      <Landing />
     </div>
   );
 };
@@ -71,3 +67,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsPage);
+
+
